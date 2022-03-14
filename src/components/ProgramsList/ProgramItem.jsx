@@ -4,7 +4,6 @@ import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 
-
 function ProgramItem({ program }) {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -14,25 +13,37 @@ function ProgramItem({ program }) {
     history.push('/program-details');
   };
 
-  const name = program.title;
-  const poster = movie.poster;
-  const id = movie.id;
+  const img = program.img_url;
+  const name = program.name;
+  const organization = program.organization;
+  const deadline = program.deadline;
 
-  const styles = theme => ({
+  const styles = (theme) => ({
     card: {
-      backgroundColor: "primary"
-    }
+      backgroundColor: 'primary',
+    },
   });
-  
+
   return (
-    <Card  style={{backgroundColor: "#dee8f1"}} sx={{ maxWidth: 345 }}>
+    <Card style={{ backgroundColor: '#dee8f1' }} sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
         height="325"
-        image={poster}
+        image={img}
         onClick={() => handleSelectedProgram(program)}
-        alt={(title, 'Poster')}
+        alt={(name, 'Poster')}
       />
+      <CardContent>
+        <Typography gutterBottom variant="h6" component="div">
+          {name}
+        </Typography>
+        <Typography gutterBottom variant="h7" component="div">
+          {organization}
+        </Typography>
+        <Typography gutterBottom variant="h7" component="div">
+          {deadline}
+        </Typography>
+      </CardContent>
     </Card>
   );
 }
