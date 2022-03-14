@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
       res.send(result.rows);
     })
     .catch((err) => {
-      console.log('ERROR: Get all movies', err);
+      console.log('ERROR: Get all programs', err);
       res.sendStatus(500);
     });
 });
