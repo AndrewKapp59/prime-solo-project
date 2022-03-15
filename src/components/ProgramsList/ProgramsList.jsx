@@ -5,8 +5,6 @@ import useReduxStore from '../../hooks/useReduxStore';
 
 import Grid from '@mui/material/Grid';
 
-import './Programs.css'
-
 
 
 function ProgramList() {
@@ -17,27 +15,24 @@ function ProgramList() {
 
   return (
     <>
-    <h3>Programs Page</h3>
-    <div className="container">
-      <Grid 
-      container 
-      spacing={0}
-      direction="column"
-      alignItems="center"
-      justifyContent="center"
-      style={{ minHeight: '100vh' }}
-      >
-        {store.programs.map((program, index) => {
-          return (
-            <Grid key={index} item xs={3} >
-              <ProgramItem key={index} program={program} />
-            </Grid>
-          );
-        })}
-      </Grid>
-    </div>
+      <div className="container">
+        <Grid
+          container
+          spacing={0}
+          direction="column"
+          alignItems="center"
+          style={{ minHeight: '100vh' }}
+        >
+          {store.programs.map((program, index) => {
+            return (
+              <Grid key={index} item xs={3}>
+                <ProgramItem key={index} program={program} />
+              </Grid>
+            );
+          })}
+        </Grid>
+      </div>
     </>
-
   );
 }
 

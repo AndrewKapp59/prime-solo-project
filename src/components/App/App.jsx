@@ -20,6 +20,12 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+
+import { Link } from 'react-router-dom';
+
 // import './App.css';
 
 function App() {
@@ -35,6 +41,15 @@ function App() {
   return (
     <Router>
       <div>
+        <Box
+          textAlign="center"
+        >
+          <Button variant="text" className='nav'>
+            <Link to="/home" style={{ textDecoration: 'none', color: 'black' }}>
+              <h2 className="nav-title">Art Rez</h2>
+            </Link>
+          </Button>
+        </Box>
         <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
