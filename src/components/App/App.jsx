@@ -13,14 +13,20 @@ import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
-import AboutPage from '../AboutPage/AboutPage';
+import ProgramsList from '../ProgramsList/ProgramsList';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
-import './App.css';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+
+import { Link } from 'react-router-dom';
+
+// import './App.css';
 
 function App() {
   const dispatch = useDispatch();
@@ -29,23 +35,33 @@ function App() {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
+    dispatch({ type: 'FETCH_PROGRAMS' });
   }, [dispatch]);
 
   return (
     <Router>
       <div>
+        <Box
+          textAlign="center"
+        >
+          <Button variant="text" className='nav'>
+            <Link to="/home" style={{ textDecoration: 'none', color: 'black' }}>
+              <h2 className="nav-title">Art Rez</h2>
+            </Link>
+          </Button>
+        </Box>
         <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
 
-          {/* Visiting localhost:3000/about will show the about page. */}
+          {/* Visiting localhost:3000/programs will show the programs page. */}
           <Route
-            // shows AboutPage at all times (logged in or not)
+            // shows ProgramsList at all times (logged in or not)
             exact
-            path="/about"
+            path="/programs"
           >
-            <AboutPage />
+            <ProgramsList />
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.
