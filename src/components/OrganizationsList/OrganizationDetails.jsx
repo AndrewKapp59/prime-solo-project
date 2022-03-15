@@ -12,6 +12,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import Link from '@mui/material/Link';
 
+
 function OrganizationDetails() {
   // const org = useSelector((store) => store.selectedOrganization);
   const dispatch = useDispatch();
