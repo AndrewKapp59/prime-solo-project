@@ -1,32 +1,43 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ProgramItem from './ProgramItem';
+import useReduxStore from '../../hooks/useReduxStore';
 
 import Grid from '@mui/material/Grid';
+
+import './Programs.css'
 
 
 
 function ProgramList() {
   const dispatch = useDispatch();
-  const programs = useSelector(store => store.programs);
+  const store = useReduxStore();
 
-  useEffect(() => {
-    dispatch({ type: 'FETCH_PROGRAMS' });
-  }, []);
+  console.log(store.programs);
 
   return (
+    <>
+    <h3>Programs Page</h3>
     <div className="container">
-      <h3>Programs Page</h3>
-      {/* <Grid container spacing={2}>
-        {programs.map((program, index) => {
+      <Grid 
+      container 
+      spacing={0}
+      direction="column"
+      alignItems="center"
+      justifyContent="center"
+      style={{ minHeight: '100vh' }}
+      >
+        {store.programs.map((program, index) => {
           return (
-            <Grid key={index} item xs={2}>
+            <Grid key={index} item xs={3} >
               <ProgramItem key={index} program={program} />
             </Grid>
           );
         })}
-      </Grid> */}
+      </Grid>
     </div>
+    </>
+
   );
 }
 

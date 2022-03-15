@@ -5,13 +5,15 @@ const pool = require('../modules/pool');
 // Gets all the programs from the data base. 
 router.get('/', (req, res) => {
   const query = 
-    `SELECT prog_name, org_name, deadline, prog_location
+    `SELECT prog_img_url, prog_name, org_name, deadline, prog_location
     FROM programs
     JOIN organizations on organizations.id = programs.org_id
     GROUP BY programs.id, organizations.id;`;
   pool
     .query(query)
     .then((result) => {
+      console.log(result.rows);
+      
       res.send(result.rows);
     })
     .catch((err) => {
@@ -19,3 +21,5 @@ router.get('/', (req, res) => {
       res.sendStatus(500);
     });
 });
+
+module.exports = router
