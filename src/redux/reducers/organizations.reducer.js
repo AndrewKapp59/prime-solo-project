@@ -1,3 +1,4 @@
+
 const organizationsReducer = (state = [], action) => {
   
   switch (action.type) {

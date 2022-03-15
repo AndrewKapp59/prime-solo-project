@@ -15,7 +15,7 @@ function OrganizationItem({ organization }) {
 
   const handleSelectedOrganization = (organization) => {
     dispatch({ type: 'SET_SELECTED_ORGANIZATION', payload: organization });
-    history.push('/organization-details');
+    history.push(`/organization-details/${organization.org_id}`);
   };
 
   console.log(organization);

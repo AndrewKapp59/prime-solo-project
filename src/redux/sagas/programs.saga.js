@@ -5,7 +5,7 @@ function* fetchPrograms() {
   // get all programs from the DB
   try {
       const response = yield axios.get('/api/programs');
-      console.log('Saga get response for programs:', response.data);
+      // console.log('Saga get response for programs:', response.data);
       yield put({ type: 'LIST_PROGRAMS', payload: response.data });
 
   } catch {
