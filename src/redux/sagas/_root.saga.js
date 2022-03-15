@@ -4,16 +4,18 @@ import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import programsSaga from './programs.saga';
 import organizationsSaga from './organizations.saga';
+import orgDetailsSaga from './orgDetails.saga'
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga
 
 
-function* watcherSaga() {
-  yield takeEvery("FETCH_PROGRAMS", fetchAllPrograms);
-  yield takeEvery("FETCH_ORGANIZATIONS", fetchAllOrganizations);
-}
+// function* watcherSaga() {
+//   yield takeEvery("FETCH_PROGRAMS", fetchPrograms);
+//   yield takeEvery("FETCH_ORGANIZATIONS", fetchOrganizations);
+//   yield takeEvery("FETCH_ORG_DETAILS", fetchOrgDetails);
+// }
 
 // some sagas trigger other sagas, as an example
 // the registration triggers a login
@@ -25,5 +27,6 @@ export default function* rootSaga() {
     userSaga(),
     programsSaga(),
     organizationsSaga(),
+    orgDetailsSaga(),
   ]);
 }

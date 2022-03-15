@@ -5,9 +5,10 @@ const pool = require('../modules/pool');
 // Gets all the organizations from the data base. 
 router.get('/', (req, res) => {
   const query = 
-    `SELECT org_img_url, org_name, org_location
+    `SELECT *
     FROM organizations
-    GROUP BY org_img_url, org_name, org_location;`;
+    JOIN programs on programs.org_id = organizations.id 
+    GROUP BY programs.id, organizations.id;`;
   pool
     .query(query)
     .then((result) => {
@@ -15,6 +16,27 @@ router.get('/', (req, res) => {
     })
     .catch((err) => {
       console.log('ERROR: Getting all organizations', err);
+      res.sendStatus(500);
+    });
+});
+
+router.get('/:id', (req, res) => {
+  const id = req.params.id
+  console.log('Organization id', req.params.id);
+  
+  const query = 
+    `SELECT *
+    FROM organizations
+    JOIN programs on programs.org_id = organizations.id 
+    WHERE org_id = $1
+    GROUP BY programs.id, organizations.id;`;
+  pool
+    .query(query, [id])
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((err) => {
+      console.log('ERROR: Getting organization details', err);
       res.sendStatus(500);
     });
 });

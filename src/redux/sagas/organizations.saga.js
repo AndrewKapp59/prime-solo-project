@@ -5,7 +5,7 @@ function* fetchOrganizations() {
   // get all organizations from the DB
   try {
       const response = yield axios.get('/api/organizations');
-      console.log('Saga get response for programs:', response.data);
+      // console.log('Saga get response for programs:', response.data);
       yield put({ type: 'LIST_ORGANIZATIONS', payload: response.data });
 
   } catch {

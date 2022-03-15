@@ -20,6 +20,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import ProgramsList from '../ProgramsList/ProgramsList';
 import OrganizationsList from '../OrganizationsList/OrganizationsList'
+import OrganizationDetails from '../OrganizationsList/OrganizationDetails'
 
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -72,6 +73,14 @@ function App() {
             path="/organizations"
           >
             <OrganizationsList />
+          </Route>
+
+          <Route
+            // shows OrganizationsList at all times (logged in or not)
+            exact
+            path="/organization-details/:id"
+          >
+            <OrganizationDetails />
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.
