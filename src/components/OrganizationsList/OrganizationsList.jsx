@@ -23,10 +23,10 @@ function OrganizationsList() {
           alignItems="center"
           style={{ minHeight: '100vh' }}
         >
-          {store.organizations.map((program, index) => {
+          {store.organizations.map((organization, index) => {
             return (
               <Grid key={index} item xs={3}>
-                <OrganizationItem key={index} program={program} />
+                <OrganizationItem key={index} organization={organization} />
               </Grid>
             );
           })}

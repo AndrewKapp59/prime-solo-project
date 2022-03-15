@@ -11,8 +11,6 @@ router.get('/', (req, res) => {
   pool
     .query(query)
     .then((result) => {
-      console.log(result.rows);
-      
       res.send(result.rows);
     })
     .catch((err) => {

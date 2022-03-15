@@ -18,8 +18,11 @@ function OrganizationItem({ organization }) {
     history.push('/organization-details');
   };
 
-  const img = organization.org_img_url;
+  console.log(organization);
+
   const name = organization.org_name;
+  const img = organization.org_img_url;
+
 
   return (
     <Card style={{ backgroundColor: '#dee8f1' }} sx={{ maxWidth: 500 }}>
