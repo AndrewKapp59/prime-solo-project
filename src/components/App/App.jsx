@@ -13,12 +13,13 @@ import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
-import ProgramsList from '../ProgramsList/ProgramsList';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import ProgramsList from '../ProgramsList/ProgramsList';
+import OrganizationsList from '../OrganizationsList/OrganizationsList'
 
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -31,20 +32,20 @@ import { Link } from 'react-router-dom';
 function App() {
   const dispatch = useDispatch();
 
-  const user = useSelector(store => store.user);
+  const user = useSelector((store) => store.user);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
     dispatch({ type: 'FETCH_PROGRAMS' });
+    dispatch({ type: 'FETCH_ORGANIZATIONS' });
+
   }, [dispatch]);
 
   return (
     <Router>
       <div>
-        <Box
-          textAlign="center"
-        >
-          <Button variant="text" className='nav'>
+        <Box textAlign="center">
+          <Button variant="text" className="nav">
             <Link to="/home" style={{ textDecoration: 'none', color: 'black' }}>
               <h2 className="nav-title">Art Rez</h2>
             </Link>
@@ -62,6 +63,15 @@ function App() {
             path="/programs"
           >
             <ProgramsList />
+          </Route>
+
+          {/* Visiting localhost:3000/organizations will show the organizations page. */}
+          <Route
+            // shows OrganizationsList at all times (logged in or not)
+            exact
+            path="/organizations"
+          >
+            <OrganizationsList />
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.
@@ -84,46 +94,37 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
-          <Route
-            exact
-            path="/login"
-          >
-            {user.id ?
-              // If the user is already logged in, 
+          <Route exact path="/login">
+            {user.id ? (
+              // If the user is already logged in,
               // redirect to the /user page
               <Redirect to="/user" />
-              :
+            ) : (
               // Otherwise, show the login page
               <LoginPage />
-            }
+            )}
           </Route>
 
-          <Route
-            exact
-            path="/registration"
-          >
-            {user.id ?
-              // If the user is already logged in, 
+          <Route exact path="/registration">
+            {user.id ? (
+              // If the user is already logged in,
               // redirect them to the /user page
               <Redirect to="/user" />
-              :
+            ) : (
               // Otherwise, show the registration page
               <RegisterPage />
-            }
+            )}
           </Route>
 
-          <Route
-            exact
-            path="/home"
-          >
-            {user.id ?
-              // If the user is already logged in, 
+          <Route exact path="/home">
+            {user.id ? (
+              // If the user is already logged in,
               // redirect them to the /user page
               <Redirect to="/user" />
-              :
+            ) : (
               // Otherwise, show the Landing page
               <LandingPage />
-            }
+            )}
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
