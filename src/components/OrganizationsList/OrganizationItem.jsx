@@ -13,7 +13,7 @@ function OrganizationItem({ organization }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const handleSelectedOrganization = (movie) => {
+  const handleSelectedOrganization = (organization) => {
     dispatch({ type: 'SET_SELECTED_ORGANIZATION', payload: organization });
     history.push('/organization-details');
   };
@@ -30,11 +30,16 @@ function OrganizationItem({ organization }) {
         component="img"
         height="100"
         image={img}
-        onClick={() => handleSelectedOrganization(organization)}
-        alt={(name, 'Poster')}
+        // onClick={() => handleSelectedOrganization(organization)}
+        alt={(name, 'img')}
       />
       <CardContent sx={{ maxHeight: 60 }}>
-        <Typography gutterBottom variant="h6" component="div">
+        <Typography 
+        gutterBottom 
+        variant="h6" 
+        component="div"
+        onClick={() => handleSelectedOrganization(organization)}
+        >
           {name}
         </Typography>
       </CardContent>
