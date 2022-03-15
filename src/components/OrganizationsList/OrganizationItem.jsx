@@ -10,11 +10,9 @@ import Typography from '@mui/material/Typography';
 
 
 function OrganizationItem({ organization }) {
-  const dispatch = useDispatch();
   const history = useHistory();
 
   const handleSelectedOrganization = (organization) => {
-    dispatch({ type: 'SET_SELECTED_ORGANIZATION', payload: organization });
     history.push(`/organization-details/${organization.org_id}`);
   };
 
