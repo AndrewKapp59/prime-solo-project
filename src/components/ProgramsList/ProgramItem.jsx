@@ -23,12 +23,6 @@ function ProgramItem({ program }) {
   const organization = program.org_name;
   const deadline = program.deadline;
 
-  const styles = (theme) => ({
-    card: {
-      backgroundColor: 'primary',
-    },
-  });
-
   return (
     <Card style={{ backgroundColor: '#dee8f1' }} sx={{ maxWidth: 500 }}>
       <CardMedia
