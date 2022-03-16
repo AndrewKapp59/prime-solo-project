@@ -4,11 +4,7 @@ import { useSelector } from 'react-redux';
 
 import { TextField, Button } from '@mui/material';
 import Box from '@mui/material/Box';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
+
 
 function LoginForm() {
   const [username, setUsername] = useState('');
@@ -62,25 +58,9 @@ function LoginForm() {
         value={password}
         onChange={(event) => setPassword(event.target.value)}
       />
-      <FormControl>
-        <FormLabel id="user-type-radio-buttons-group-label">Gender</FormLabel>
-        <RadioGroup
-          row
-          aria-labelledby="row-radio-buttons-group-label"
-          name="user-type"
-        >
-          <FormControlLabel value="female" control={<Radio />} label="Female" />
-          <FormControlLabel value="male" control={<Radio />} label="Male" />
-          <FormControlLabel value="other" control={<Radio />} label="Other" />
-          <FormControlLabel
-            value="disabled"
-            disabled
-            control={<Radio />}
-            label="other"
-          />
-        </RadioGroup>
-      </FormControl>
-      <Button variant="outlined" type="submit" name="submit" value="Log In">Login</Button>
+      <div>
+        <Button variant="outlined" type="submit" name="submit" value="Log In">Login</Button>
+      </div>
     </Box>
   );
 }

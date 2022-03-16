@@ -1,12 +1,27 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+
 function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [value, setValue] = React.useState('');
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
 
+ 
+
+  console.log(value);
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
+  
   const registerUser = (event) => {
     event.preventDefault();
 
@@ -15,6 +30,7 @@ function RegisterForm() {
       payload: {
         username: username,
         password: password,
+        user_type: value
       },
     });
   }; // end registerUser
@@ -51,6 +67,17 @@ function RegisterForm() {
           />
         </label>
       </div>
+      <FormControl>
+        <FormLabel id="user-type-radio-buttons-group-label">User Type</FormLabel>
+        <RadioGroup
+          row
+          value={value}
+          onChange={handleChange}
+        >
+          <FormControlLabel value="Artist" control={<Radio />} label="Artist" />
+          <FormControlLabel value="Organization" control={<Radio />} label="Organization" />
+        </RadioGroup>
+      </FormControl>
       <div>
         <input className="btn" type="submit" name="submit" value="Register" />
       </div>
