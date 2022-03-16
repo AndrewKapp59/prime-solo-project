@@ -14,7 +14,11 @@ function ProgramItem({ program }) {
   const history = useHistory();
 
   const handleSelectedProgram = (program) => {
-    history.push(`/program-details/${program.id}`);
+    history.push(`/program-details/${program.prog_name}`);
+  };
+
+  const handleSelectedOrganization = (program) => {
+    history.push(`/organization-details/${program.org_id}`);
   };
 
   const img = program.prog_img_url;
@@ -39,7 +43,12 @@ function ProgramItem({ program }) {
         >
           {name}
         </Typography>
-        <Typography gutterBottom variant="h7" component="div">
+        <Typography 
+        gutterBottom 
+        variant="h7" 
+        component="div"
+        onClick={() => handleSelectedOrganization(program)}
+        >
           {organization}
         </Typography>
         <Typography gutterBottom variant="h7" component="div">

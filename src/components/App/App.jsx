@@ -70,7 +70,7 @@ function App() {
           <Route
             // shows OrganizationsList at all times (logged in or not)
             exact
-            path="/program-details/:id"
+            path="/program-details/:name"
           >
             <ProgramDetails />
           </Route>

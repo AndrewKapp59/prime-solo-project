@@ -15,13 +15,13 @@ import Link from '@mui/material/Link';
 function ProgramDetails() {
   // const org = useSelector((store) => store.selectedOrganization);
   const dispatch = useDispatch();
-  const { id } = useParams();
+  const { name } = useParams();
 
-  console.log('ID is', id);
+  console.log('ID is', name);
 
   useEffect(() => {
     // Upon load, get the selected program details based on the params id
-    dispatch({ type: 'FETCH_PROG_DETAILS', payload: id });
+    dispatch({ type: 'FETCH_PROG_DETAILS', payload: name });
   }, []);
 
   const prog = useSelector(store => store.progDetails);
@@ -30,7 +30,7 @@ function ProgramDetails() {
 
   return (
     <>
-      {/* <Grid container justifyContent="center">
+      <Grid container justifyContent="center">
         <Typography gutterBottom variant="h6" component="div">
           {prog.prog_name}
         </Typography>
@@ -43,31 +43,28 @@ function ProgramDetails() {
             maxWidth: { xs: 350, md: 250 },
           }}
           alt=""
-          src={prog.org_img_url}
+          src={prog.prog_img_url}
         />
       </Grid>
       <Typography gutterBottom variant="b1" component="div">
+        Application Deadline: {prog.deadline}
+      </Typography>
+      <Typography gutterBottom variant="b1" component="div">
+        Funding: ${prog.funding_amount}
+      </Typography>
+      <Typography gutterBottom variant="b1" component="div">
+        Costs: {prog.cost_amount}
+      </Typography>
+      <Typography gutterBottom variant="b1" component="div">
         About:
         <Typography gutterBottom variant="b2" component="div">
-          {org.about}
+          {prog.description}
         </Typography>
       </Typography>
       <Typography gutterBottom variant="b1" component="div">
         Facilities:
         <Typography gutterBottom variant="b2" component="div">
-          {org.facilities}
-        </Typography>
-      </Typography>
-      <Typography gutterBottom variant="b1" component="div">
-        Public Programs:
-        <Typography gutterBottom variant="b2" component="div">
-          {org.public_programs}
-        </Typography>
-      </Typography>
-      <Typography gutterBottom variant="b1" component="div">
-        Housing:
-        <Typography gutterBottom variant="b2" component="div">
-          {org.housing}
+          {prog.facilities}
         </Typography>
       </Typography>
       <Typography gutterBottom variant="b1" component="div">
@@ -79,10 +76,10 @@ function ProgramDetails() {
           height="200"
           frameBorder={0}
           style={{ border: 0 }}
-          src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDX4e7v69d8lQVeWvBOcs-Bt9mFS2VVogg&q=${org.org_location}`}
+          src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDX4e7v69d8lQVeWvBOcs-Bt9mFS2VVogg&q=${prog.prog_location}`}
           allowFullScreen
         ></iframe>
-        <BottomNavigation sx={{ width: 'auto' }}>
+        {/* <BottomNavigation sx={{ width: 'auto' }}>
           <Link href={org.instagram_url}>
             <BottomNavigationAction icon={<InstagramIcon />} />
           </Link>
@@ -92,8 +89,8 @@ function ProgramDetails() {
           <Link href={org.facebook_url}>
             <BottomNavigationAction icon={<FacebookIcon />} />
           </Link>
-        </BottomNavigation>
-      </Grid> */}
+        </BottomNavigation> */}
+      </Grid>
     </>
   );
 }
