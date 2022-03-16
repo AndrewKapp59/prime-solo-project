@@ -4,10 +4,10 @@ import axios from 'axios';
 function* fetchOrgDetails(action) {
   try {
       const response = yield axios.get(`/api/organizations/${action.payload}`)
-      console.log('Saga get org details response for programs:', response.data)
+      console.log('Saga get organization details response:', response.data)
       yield put({type: 'SET_ORG_DETAILS', payload: response.data[0]})
   } catch (error) {
-      console.log('Error getting details', error);  
+      console.log('Error getting organization details', error);  
   }
 }
 

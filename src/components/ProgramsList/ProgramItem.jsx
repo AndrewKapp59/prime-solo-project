@@ -13,9 +13,12 @@ function ProgramItem({ program }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const handleSelectedProgram = (movie) => {
-    dispatch({ type: 'SET_SELECTED_PROGRAM', payload: program });
-    history.push('/program-details');
+  const handleSelectedProgram = (program) => {
+    history.push(`/program-details/${program.prog_name}`);
+  };
+
+  const handleSelectedOrganization = (program) => {
+    history.push(`/organization-details/${program.org_id}`);
   };
 
   const img = program.prog_img_url;
@@ -29,14 +32,23 @@ function ProgramItem({ program }) {
         component="img"
         height="100"
         image={img}
-        onClick={() => handleSelectedProgram(program)}
         alt={(name, 'Poster')}
       />
       <CardContent sx={{ maxHeight: 60 }}>
-        <Typography gutterBottom variant="h6" component="div">
+        <Typography 
+        gutterBottom 
+        variant="h6" 
+        component="div"
+        onClick={() => handleSelectedProgram(program)}
+        >
           {name}
         </Typography>
-        <Typography gutterBottom variant="h7" component="div">
+        <Typography 
+        gutterBottom 
+        variant="h7" 
+        component="div"
+        onClick={() => handleSelectedOrganization(program)}
+        >
           {organization}
         </Typography>
         <Typography gutterBottom variant="h7" component="div">

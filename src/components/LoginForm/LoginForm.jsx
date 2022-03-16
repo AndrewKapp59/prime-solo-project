@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
+
+import { TextField, Button } from '@mui/material';
+import Box from '@mui/material/Box';
+
 
 function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const errors = useSelector(store => store.errors);
+  const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
 
   const login = (event) => {
@@ -25,41 +29,39 @@ function LoginForm() {
   }; // end login
 
   return (
-    <form className="formPanel" onSubmit={login}>
+    <Box component="form" container onSubmit={login} textAlign="center">
       <h2>Login</h2>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">
           {errors.loginMessage}
         </h3>
       )}
+      <TextField
+        id="username"
+        maxRows={5}
+        sx={{ color: 'white', mt: 1, mb: 1, width: 350 }}
+        required
+        label="Username"
+        color="primary"
+        autoComplete="off"
+        value={username}
+        onChange={(event) => setUsername(event.target.value)}
+      />
+      <TextField
+        id="outlined-required"
+        maxRows={5}
+        sx={{ color: 'white', mt: 1, mb: 1, width: 350 }}
+        required
+        label="Password"
+        color="primary"
+        autoComplete="off"
+        value={password}
+        onChange={(event) => setPassword(event.target.value)}
+      />
       <div>
-        <label htmlFor="username">
-          Username:
-          <input
-            type="text"
-            name="username"
-            required
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-          />
-        </label>
+        <Button variant="outlined" type="submit" name="submit" value="Log In">Login</Button>
       </div>
-      <div>
-        <label htmlFor="password">
-          Password:
-          <input
-            type="password"
-            name="password"
-            required
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </label>
-      </div>
-      <div>
-        <input className="btn" type="submit" name="submit" value="Log In" />
-      </div>
-    </form>
+    </Box>
   );
 }
 

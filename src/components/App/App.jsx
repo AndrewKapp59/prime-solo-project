@@ -19,6 +19,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import ProgramsList from '../ProgramsList/ProgramsList';
+import ProgramDetails from '../ProgramsList/ProgramDetails'
 import OrganizationsList from '../OrganizationsList/OrganizationsList'
 import OrganizationDetails from '../OrganizationsList/OrganizationDetails'
 
@@ -64,6 +65,14 @@ function App() {
             path="/programs"
           >
             <ProgramsList />
+          </Route>
+
+          <Route
+            // shows OrganizationsList at all times (logged in or not)
+            exact
+            path="/program-details/:name"
+          >
+            <ProgramDetails />
           </Route>
 
           {/* Visiting localhost:3000/organizations will show the organizations page. */}
