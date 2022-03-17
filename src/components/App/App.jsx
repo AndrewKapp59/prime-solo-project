@@ -15,6 +15,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
+import Favorites from '../Favorites/Favorites'
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
@@ -53,7 +54,9 @@ function App() {
             </Link>
           </Button>
         </Box>
+
         <Nav />
+
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
@@ -92,6 +95,8 @@ function App() {
             <OrganizationDetails />
           </Route>
 
+
+
           {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
@@ -99,24 +104,26 @@ function App() {
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
             exact
-            path="/user"
+            path="/favorites"
           >
-            <UserPage />
+            <Favorites />
           </ProtectedRoute>
 
-          <ProtectedRoute
+          {/* <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/info"
           >
             <InfoPage />
-          </ProtectedRoute>
+          </ProtectedRoute> */}
+
+
 
           <Route exact path="/login">
-            {user.id ? (
+            {user.user_type === 'Artist' ? (
               // If the user is already logged in,
               // redirect to the /user page
-              <Redirect to="/user" />
+              <Redirect to="/favorites" />
             ) : (
               // Otherwise, show the login page
               <LoginPage />
@@ -124,10 +131,10 @@ function App() {
           </Route>
 
           <Route exact path="/registration">
-            {user.id ? (
+            {user.user_type === 'Artist' ? (
               // If the user is already logged in,
               // redirect them to the /user page
-              <Redirect to="/user" />
+              <Redirect to="/favorites" />
             ) : (
               // Otherwise, show the registration page
               <RegisterPage />
@@ -135,21 +142,16 @@ function App() {
           </Route>
 
           <Route exact path="/home">
-            {user.id ? (
-              // If the user is already logged in,
-              // redirect them to the /user page
-              <Redirect to="/user" />
-            ) : (
-              // Otherwise, show the Landing page
               <LandingPage />
-            )}
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
             <h1>404</h1>
           </Route>
+
         </Switch>
+
         <Footer />
       </div>
     </Router>

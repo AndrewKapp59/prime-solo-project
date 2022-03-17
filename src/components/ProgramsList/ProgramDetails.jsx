@@ -79,17 +79,6 @@ function ProgramDetails() {
           src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDX4e7v69d8lQVeWvBOcs-Bt9mFS2VVogg&q=${prog.prog_location}`}
           allowFullScreen
         ></iframe>
-        {/* <BottomNavigation sx={{ width: 'auto' }}>
-          <Link href={org.instagram_url}>
-            <BottomNavigationAction icon={<InstagramIcon />} />
-          </Link>
-          <Link href={org.twitter_url}>
-            <BottomNavigationAction icon={<TwitterIcon />} />
-          </Link>
-          <Link href={org.facebook_url}>
-            <BottomNavigationAction icon={<FacebookIcon />} />
-          </Link>
-        </BottomNavigation> */}
       </Grid>
     </>
   );
