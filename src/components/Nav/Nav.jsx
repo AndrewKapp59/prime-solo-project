@@ -2,22 +2,21 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 // import './Nav.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 // import Link from '@mui/material/Link';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 
 function Nav() {
   const user = useSelector((store) => store.user);
+  const dispatch = useDispatch();
 
   return (
     <div>
       {/* If no user is logged in, show these links */}
       {!user.id && (
         // If there's no user, show login/registration links
-        <Box
-          textAlign="center"
-        >
+        <Box textAlign="center">
           <Button size="small" variant="text">
             <Link
               className="navLink"
@@ -45,22 +44,48 @@ function Nav() {
               Programs
             </Link>
           </Button>
+          
         </Box>
       )}
 
-      {/* If a user is logged in, show these links */}
-      {user.id && (
-        <>
-          <Link className="navLink" to="/user">
-            Home
-          </Link>
-
-          <Link className="navLink" to="/info">
-            Info Page
-          </Link>
-
-          <LogOutButton className="navLink" />
-        </>
+      {/* If a user is logged in as an Artist, show these links */}
+      {user.user_type === 'Artist' && (
+        <Box textAlign="center">
+          <Button size="small" variant="text">
+            <Link
+              className="navLink"
+              to="/organizations"
+              style={{ textDecoration: 'none', color: 'black' }}
+            >
+              Organizations
+            </Link>
+          </Button>
+          <Button
+            size="small"
+            variant="text"
+            onClick={() => dispatch({ type: 'LOGOUT' })}
+          >
+            Logout
+          </Button>
+          <Button size="small" variant="text">
+            <Link
+              className="navLink"
+              to="/programs"
+              style={{ textDecoration: 'none', color: 'black' }}
+            >
+              Programs
+            </Link>
+          </Button>
+          <Button size="small" variant="text">
+            <Link
+              className="navLink"
+              to="/favorites"
+              style={{ textDecoration: 'none', color: 'black' }}
+            >
+              My Favorites
+            </Link>
+          </Button>
+        </Box>
       )}
     </div>
   );

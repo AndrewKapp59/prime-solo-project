@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import OrganizationItem from './OrganizationItem';
 import useReduxStore from '../../hooks/useReduxStore';
 
+// import './OrganizationsList.css'
+
 import Grid from '@mui/material/Grid';
 
 
@@ -15,7 +17,7 @@ function OrganizationsList() {
 
   return (
     <>
-      <div className="container">
+      <div className="org-list-container">
         <Grid
           container
           spacing={0}

@@ -27,7 +27,8 @@ function OrganizationDetails() {
   }, []);
 
   const org = useSelector(store => store.orgDetails);
-
+  const user = useSelector((store) => store.user);
+  
   console.log(org);
 
   return (
