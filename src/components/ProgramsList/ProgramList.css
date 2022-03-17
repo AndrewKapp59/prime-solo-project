@@ -1,0 +1,21 @@
+.prog-card * {
+  margin: 0px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.prog-card {
+  position: relative;
+}
+
+.prog-card .favorite-overlay {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: #333;
+  background-color: #ffffffd5;
+}
+
+.prog-card .favorite-overlay:hover {
+  cursor: pointer;
+}

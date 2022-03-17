@@ -1,19 +1,16 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, } from 'react-redux';
 import OrganizationItem from './OrganizationItem';
 import useReduxStore from '../../hooks/useReduxStore';
-
-// import './OrganizationsList.css'
 
 import Grid from '@mui/material/Grid';
 
 
 
 function OrganizationsList() {
-  const dispatch = useDispatch();
   const store = useReduxStore();
 
-  console.log(store.organizations);
+  // console.log(store.organizations);
 
   return (
     <>

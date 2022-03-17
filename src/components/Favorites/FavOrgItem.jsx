@@ -1,18 +1,3 @@
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import * as React from 'react';
-
-import './OrganizationsList.css';
-
-// Material UI Imports
-import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
-import BookmarkIcon from '@mui/icons-material/Bookmark';
-
 function OrganizationItem({ organization }) {
   const history = useHistory();
   const dispatch = useDispatch();
