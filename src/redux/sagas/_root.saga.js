@@ -8,6 +8,11 @@ import orgDetailsSaga from './orgDetails.saga'
 import progDetailsSaga from './progDetails.saga'
 import postFavOrg from './postFavOrg.saga';
 import deleteFavOrg from './deleteFavOrg.saga';
+import getFavOrgs from './getFavOrgs.saga';
+import postFavProg from './postFavProg.saga';
+import deleteFavProg from './deleteFavProg.saga';
+import getFavProg from './getFavProg.saga';
+
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -27,5 +32,9 @@ export default function* rootSaga() {
     progDetailsSaga(),
     postFavOrg(),
     deleteFavOrg(),
+    getFavOrgs(),
+    postFavProg(),
+    deleteFavProg(),
+    getFavProg(),
   ]);
 }

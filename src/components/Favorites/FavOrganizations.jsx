@@ -25,13 +25,13 @@ function FavOrganizations() {
           alignItems="center"
           style={{ minHeight: '100vh' }}
         >
-          {/* {favOrgList.map((favOrg, index) => {
+          {favOrgList.map((favOrg, index) => {
             return (
               <Grid key={index} item xs={3}>
                 <FavOrgItem key={index} favOrg={favOrg} />
               </Grid>
             );
-          })} */}
+          })}
         </Grid>
       </div>
     </>

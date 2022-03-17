@@ -25,31 +25,23 @@ function ProgramItem({ program }) {
     history.push(`/program-details/${program.prog_name}`);
   };
 
-  const handleSelectedOrganization = (program) => {
-    history.push(`/organization-details/${program.org_id}`);
+  const handleSelectedOrganization = (favProg) => {
+    history.push(`/organization-details/${favProg.org_id}`);
   };
 
   const addFavorite = () => {
-    // console.log("Adding Favorite");
-    // const postOptions = {
-
-    //   name: organization.org_name,
-
-    //   img_id,
-    //   category_id: cat,
-    // };
-    // dispatch({ type: "POST_GIF", payload: postOptions });
+    console.log("Adding Favorite");
+    const postOptions = {
+      prog_id: program.id,
+      user_id: user.id
+    };
+    dispatch({ type: "POST_FAV_PROG", payload: postOptions });
     setFavorite(true);
   };
 
   const removeFavorite = () => {
     console.log('Removing Favorite');
-
-    // const deleteOptions = {
-    //   img_id,
-    // };
-    // dispatch({ type: "DELETE_FAV", payload: deleteOptions });
-
+    dispatch({ type: "DELETE_FAV_PROG", payload: program.id });
     setFavorite(false);
   };
 
@@ -60,7 +52,11 @@ function ProgramItem({ program }) {
   const deadline = program.deadline;
 
   return (
-    <Card className='prog-card' style={{ backgroundColor: '#dee8f1' }} sx={{ maxWidth: 500 }}>
+    <Card 
+    className='prog-card' 
+    style={{ backgroundColor: '#dee8f1' }} 
+    sx={{ maxWidth: 500 }}
+    >
       <CardMedia
         component="img"
         height="100"

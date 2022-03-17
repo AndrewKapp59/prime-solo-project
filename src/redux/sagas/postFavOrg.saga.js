@@ -3,7 +3,7 @@ import axios from 'axios'
 
 function* addFavOrg(action) {
   try {
-    yield axios.post('/api/favorites', action.payload);
+    yield axios.post('/api/favorites/org', action.payload);
   }
   catch (error) {
     console.log('Error POSTing fav org', error);

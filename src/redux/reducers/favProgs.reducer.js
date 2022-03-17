@@ -1,12 +1,11 @@
-
-const favOrgs = (state = [], action) => {
+const favProgs = (state = [], action) => {
   
   switch (action.type) {
-      case 'LIST_FAV_ORGS':
+      case 'LIST_FAV_PROGS':
           return action.payload;
       default:
           return state;
   }
 };   
 
-export default favOrgs;
+export default favProgs;

@@ -4,7 +4,7 @@ import axios from 'axios'
 function* fetchFavOrgs() {
   // get all organizations from the DB
   try {
-      const response = yield axios.get('/api/favorites');
+      const response = yield axios.get('/api/favorites/org');
       // console.log('Saga get response for programs:', response.data);
       yield put({ type: 'LIST_FAV_ORGS', payload: response.data });
 
