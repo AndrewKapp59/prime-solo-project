@@ -16,7 +16,6 @@ function FavOrganizations() {
 
   return (
     <>
-      <h1>Favorite Organizations</h1>
       <div className="org-list-container">
         <Grid
           container

@@ -41,4 +41,25 @@ router.get('/:id', (req, res) => {
     });
 });
 
+router.get('/user/:id', (req, res) => {
+  const id = req.params.id
+  console.log('User id', req.params.id);
+  
+  const query = 
+    `SELECT *
+    FROM organizations
+    JOIN programs on programs.org_id = organizations.id 
+    WHERE org_user_id = $1
+    GROUP BY programs.id, organizations.id;`;
+  pool
+    .query(query, [id])
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((err) => {
+      console.log('ERROR: Getting organization details', err);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router

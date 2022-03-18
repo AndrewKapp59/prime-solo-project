@@ -16,7 +16,6 @@ function FavPrograms() {
 
   return (
     <>
-    <h1>Favorite Programs</h1>
     <div className="prog-list-container">
       <Grid
         container

@@ -5,12 +5,8 @@ import { useParams } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import BottomNavigation from '@mui/material/BottomNavigation';
-import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import InstagramIcon from '@mui/icons-material/Instagram';
 import Link from '@mui/material/Link';
+import Button from '@mui/material/Button';
 
 function ProgramDetails() {
   // const org = useSelector((store) => store.selectedOrganization);
@@ -80,6 +76,15 @@ function ProgramDetails() {
           allowFullScreen
         ></iframe>
       </Grid>
+      <Box textAlign="center" sx={{mt:1}}>
+        <Button size="small" variant="outlined">
+          <Link href={prog.app_url}
+            style={{ textDecoration: 'none', color: 'black' }}
+          >
+            Apply
+          </Link>
+        </Button>
+      </Box>
     </>
   );
 }

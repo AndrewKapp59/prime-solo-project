@@ -12,21 +12,22 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import Link from '@mui/material/Link';
 
-
-function OrganizationDetails() {
-  // const org = useSelector((store) => store.selectedOrganization);
+function OrganizationProfile() {
   const dispatch = useDispatch();
-  const { id } = useParams();
+
+  const org = useSelector((store) => store.orgDetails);
+  const user = useSelector((store) => store.user);
+
+  const id = user.id
 
   console.log('ID is', id);
 
   useEffect(() => {
     // Upon load, get the selected organization details based on the params id
-    dispatch({ type: 'FETCH_ORG_DETAILS', payload: id });
+    dispatch({ type: 'FETCH_ORG_PROFILE', payload: id });
   }, []);
 
-  const org = useSelector((store) => store.orgDetails);
-  const user = useSelector((store) => store.user);
+
 
   console.log(org);
 
@@ -100,4 +101,4 @@ function OrganizationDetails() {
   );
 }
 
-export default OrganizationDetails;
+export default OrganizationProfile;

@@ -12,6 +12,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
+import Button from '@mui/material/Button';
 
 function OrganizationItem({ organization }) {
   const history = useHistory();
@@ -22,19 +23,19 @@ function OrganizationItem({ organization }) {
   console.log(user);
 
   const addFavorite = () => {
-    console.log("Adding Favorite");
+    console.log('Adding Favorite');
     const postOptions = {
       org_id: organization.id,
-      user_id: user.id
+      user_id: user.id,
     };
-    dispatch({ type: "POST_FAV_ORG", payload: postOptions });
+    dispatch({ type: 'POST_FAV_ORG', payload: postOptions });
     setFavorite(true);
   };
 
   const removeFavorite = () => {
     console.log('Removing Favorite');
 
-    dispatch({ type: "DELETE_FAV_ORG", payload: organization.id });
+    dispatch({ type: 'DELETE_FAV_ORG', payload: organization.id });
 
     setFavorite(false);
   };
@@ -75,6 +76,15 @@ function OrganizationItem({ organization }) {
           )}
           {favorite && (
             <BookmarkIcon onClick={removeFavorite} fontSize="medium" />
+          )}
+        </div>
+      ) : (
+        <div></div>
+      )}
+      {user.user_type === 'Organization' ? (
+        <div className="edit-overlay">
+          {!favorite && (
+            <Button fontSize="medium" />
           )}
         </div>
       ) : (

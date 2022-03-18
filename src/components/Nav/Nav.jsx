@@ -44,7 +44,6 @@ function Nav() {
               Programs
             </Link>
           </Button>
-          
         </Box>
       )}
 
@@ -83,6 +82,65 @@ function Nav() {
               style={{ textDecoration: 'none', color: 'black' }}
             >
               My Favorites
+            </Link>
+          </Button>
+        </Box>
+      )}
+
+      {/* If a user is logged in as an Organization, show these links */}
+      {user.user_type === 'Organization' && (
+        <Box textAlign="center">
+          <Button size="small" variant="text">
+            <Link
+              className="navLink"
+              to="/organizations"
+              style={{ textDecoration: 'none', color: 'black' }}
+            >
+              Organizations
+            </Link>
+          </Button>
+          <Button
+            size="small"
+            variant="text"
+            onClick={() => dispatch({ type: 'LOGOUT' })}
+          >
+            Logout
+          </Button>
+          <Button size="small" variant="text">
+            <Link
+              className="navLink"
+              to="/programs"
+              style={{ textDecoration: 'none', color: 'black' }}
+            >
+              Programs
+            </Link>
+          </Button>
+          <Button size="small" variant="text">
+            <Link
+              className="navLink"
+              to="/org-programs"
+              style={{ textDecoration: 'none', color: 'black' }}
+            >
+              My Programs
+            </Link>
+          </Button>
+            <Button size="small" variant="text">
+            <Link
+              className="navLink"
+              to="/org-profile"
+              // to="organization-details/1"
+              style={{ textDecoration: 'none', color: 'black' }}
+            >
+              My Profile
+            </Link>
+          </Button>
+          <Button size="small" variant="text">
+            <Link
+              className="navLink"
+              to="/"
+              style={{ textDecoration: 'none', color: 'black' }}
+            >
+              Add Program
             </Link>
           </Button>
         </Box>

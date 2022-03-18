@@ -13,19 +13,17 @@ import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
-import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
-import Favorites from '../Favorites/Favorites'
+import Favorites from '../Favorites/Favorites';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import ProgramsList from '../ProgramsList/ProgramsList';
-import ProgramDetails from '../ProgramsList/ProgramDetails'
-import OrganizationsList from '../OrganizationsList/OrganizationsList'
-import OrganizationDetails from '../OrganizationsList/OrganizationDetails'
+import ProgramDetails from '../ProgramsList/ProgramDetails';
+import OrganizationsList from '../OrganizationsList/OrganizationsList';
+import OrganizationDetails from '../OrganizationsList/OrganizationDetails';
+import OrganizationProfile from '../OrganizationProfile/OrganizationProfile';
 
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 
 import { Link } from 'react-router-dom';
@@ -41,7 +39,6 @@ function App() {
     dispatch({ type: 'FETCH_USER' });
     dispatch({ type: 'FETCH_PROGRAMS' });
     dispatch({ type: 'FETCH_ORGANIZATIONS' });
-
   }, [dispatch]);
 
   return (
@@ -95,8 +92,6 @@ function App() {
             <OrganizationDetails />
           </Route>
 
-
-
           {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
@@ -109,47 +104,83 @@ function App() {
             <Favorites />
           </ProtectedRoute>
 
-          {/* <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
             exact
-            path="/info"
+            path="/org-profile"
           >
-            <InfoPage />
-          </ProtectedRoute> */}
+            <OrganizationProfile />
+          </ProtectedRoute>
 
-
-
-          <Route exact path="/login">
-            {user.user_type === 'Artist' ? (
+          <Route exact path="/login"> 
+            {user.id ? (
               // If the user is already logged in,
               // redirect to the /user page
-              <Redirect to="/favorites" />
+
+              <Redirect to="/user1" />
+
             ) : (
               // Otherwise, show the login page
               <LoginPage />
             )}
           </Route>
 
-          <Route exact path="/registration">
+          <Route exact path="/user1"> 
             {user.user_type === 'Artist' ? (
               // If the user is already logged in,
-              // redirect them to the /user page
+              // redirect to the /user1 page
               <Redirect to="/favorites" />
             ) : (
-              // Otherwise, show the registration page
+              // Otherwise, they are an organization
+              <Redirect to="/org-profile" />
+            )}
+          </Route>
+
+          <Route exact path="/registration"> 
+            {user.id ? (
+              // If the user is already logged in,
+              // redirect to the /user2 page
+
+              <Redirect to="/user2" />
+
+            ) : (
+              // Otherwise, show the login page
               <RegisterPage />
             )}
           </Route>
 
+          <Route exact path="/user2">
+            {user.user_type === 'Artist' ? (
+              // If the user is an artist,
+              // redirect them to the /favorites page
+              <Redirect to="/favorites" />
+            ) : (
+              // Otherwise, they are an organization 
+              // redirect them to their profile page
+              <Redirect to="/org-profile" />
+            )}
+          </Route>
+
+
+          {/* <Route exact path="/registration">
+            {user.user_type === 'Organization' ? (
+              // If the user is already logged in,
+              // redirect them to the /user page
+              <Redirect to="/org-programs" />
+            ) : (
+              // Otherwise, show the registration page
+              <RegisterPage />
+            )}
+          </Route> */}
+
           <Route exact path="/home">
-              <LandingPage />
+            <LandingPage />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
             <h1>404</h1>
           </Route>
-
         </Switch>
 
         <Footer />

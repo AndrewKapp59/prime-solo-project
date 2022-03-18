@@ -6,7 +6,8 @@ import organizations from './organizations.reducer'
 import orgDetails from './orgDetails.reducer'
 import progDetails from './progDetails.reducer'
 import favOrgs from './favOrgs.reducer';
-import favProgs from './favProgs.reducer'
+import favProgs from './favProgs.reducer';
+import orgProfile from '../sagas/orgProfile';;
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   progDetails,
   favOrgs,
   favProgs,
+  orgProfile,
 });
 
 export default rootReducer;
