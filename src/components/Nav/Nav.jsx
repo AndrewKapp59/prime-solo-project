@@ -32,7 +32,7 @@ function Nav() {
               to="/login"
               style={{ textDecoration: 'none', color: 'black' }}
             >
-              Login / Register
+              Login
             </Link>
           </Button>
           <Button size="small" variant="text">

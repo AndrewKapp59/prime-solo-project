@@ -11,25 +11,40 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import Link from '@mui/material/Link';
+import Button from '@mui/material/Button';
 
 function OrganizationProfile() {
   const dispatch = useDispatch();
 
-  const org = useSelector((store) => store.orgDetails);
-  const user = useSelector((store) => store.user);
-
-  const id = user.id
-
-  console.log('ID is', id);
-
   useEffect(() => {
-    // Upon load, get the selected organization details based on the params id
+    // Upon load, get the selected organization profile based on the user id
     dispatch({ type: 'FETCH_ORG_PROFILE', payload: id });
   }, []);
 
+  const org = useSelector((store) => store.orgProfile);
+  const user = useSelector((store) => store.user);
 
-
+  const id = user.id;
+  console.log('ID is', id);
   console.log(org);
+
+  const [update, setUpdate] = useState(updateState);
+
+  const updateOrg = (e) => {
+    e.preventDefault();
+    // Sending dispatch to saga to handle the edit organization function
+    dispatch({ type: 'EDIT_ORG', payload: { update, id } });
+    setOpen(false); // Close the edit dialog
+    setUpdate(updateState); // reset the edit state to default
+    // dispatch({ type: 'GET_DETAILS', payload: id }); // Needs to be done to show the updated edits
+  };
+
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    // Opens edit Dialog box.
+    setOpen(true);
+  };
 
   return (
     <>
@@ -48,6 +63,10 @@ function OrganizationProfile() {
           alt=""
           src={org.org_img_url}
         />
+
+        <Button size="small" variant="outlined" onClick={handleClickOpen}>
+          Edit
+        </Button>
       </Grid>
       <Typography gutterBottom variant="b1" component="div">
         About:
@@ -86,7 +105,7 @@ function OrganizationProfile() {
           allowFullScreen
         ></iframe>
         <BottomNavigation sx={{ width: 'auto' }}>
-          <Link >
+          <Link>
             <BottomNavigationAction icon={<InstagramIcon />} />
           </Link>
           <Link href={org.twitter_url}>

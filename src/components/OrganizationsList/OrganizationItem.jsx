@@ -12,7 +12,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
-import Button from '@mui/material/Button';
+
 
 function OrganizationItem({ organization }) {
   const history = useHistory();
@@ -51,7 +51,7 @@ function OrganizationItem({ organization }) {
     <Card
       className="org-card"
       style={{ backgroundColor: '#dee8f1' }}
-      sx={{ maxWidth: 500 }}
+      sx={{ width: 300 }}
     >
       <CardMedia
         component="img"
@@ -76,15 +76,6 @@ function OrganizationItem({ organization }) {
           )}
           {favorite && (
             <BookmarkIcon onClick={removeFavorite} fontSize="medium" />
-          )}
-        </div>
-      ) : (
-        <div></div>
-      )}
-      {user.user_type === 'Organization' ? (
-        <div className="edit-overlay">
-          {!favorite && (
-            <Button fontSize="medium" />
           )}
         </div>
       ) : (

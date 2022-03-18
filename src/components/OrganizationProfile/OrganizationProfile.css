@@ -1,0 +1,21 @@
+.org-card * {
+  margin: 0px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.org-card {
+  position: relative;
+}
+
+.org-card .favorite-overlay {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: #333;
+  background-color: #ffffffd5;
+}
+
+.org-card .favorite-overlay:hover {
+  cursor: pointer;
+}
