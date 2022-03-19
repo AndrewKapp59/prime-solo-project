@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import Grid from '@mui/material/Grid';
@@ -12,6 +12,11 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import Link from '@mui/material/Link';
 import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
 
 function OrganizationProfile() {
   const dispatch = useDispatch();
@@ -28,6 +33,14 @@ function OrganizationProfile() {
   console.log('ID is', id);
   console.log(org);
 
+  const updateState = {
+    org_name: org.org_name,
+    org_location: org.org_location,
+    org_img_url: org.org_img_url,
+    about: org.about,
+  };
+
+  // Storing the local updates to the organization in here
   const [update, setUpdate] = useState(updateState);
 
   const updateOrg = (e) => {
@@ -39,11 +52,18 @@ function OrganizationProfile() {
     // dispatch({ type: 'GET_DETAILS', payload: id }); // Needs to be done to show the updated edits
   };
 
+  //Handles opening the edit dialog
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
     // Opens edit Dialog box.
     setOpen(true);
+  };
+
+  const handleCloseEdit = () => {
+    //Handles closing the dialog box
+    setOpen(false);
+    setUpdate(updateState);
   };
 
   return (
@@ -116,6 +136,75 @@ function OrganizationProfile() {
           </Link>
         </BottomNavigation>
       </Grid>
+      {open && (
+        <Dialog open={open} onClose={handleCloseEdit}>
+          <DialogTitle>Edit {org.org_name}</DialogTitle>
+          <DialogContent>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="org_name"
+              label="Name"
+              type="text"
+              fullWidth
+              variant="standard"
+              value={update.org_name}
+              onChange={(e) =>
+                setUpdate({ ...update, org_name: e.target.value })
+              }
+            />
+            <TextField
+              autoFocus
+              multiline
+              rows="5"
+              fullWidth
+              label="Location"
+              margin="dense"
+              id="org_location"
+              type="text"
+              variant="standard"
+              value={update.org_location}
+              onChange={(e) =>
+                setUpdate({ ...update, org_location: e.target.value })
+              }
+            />
+            <TextField
+              autoFocus
+              multiline
+              rows="5"
+              fullWidth
+              label="Image"
+              margin="dense"
+              id="org_img_url"
+              type="text"
+              variant="standard"
+              value={update.org_img_url}
+              onChange={(e) =>
+                setUpdate({ ...update, org_img_url: e.target.value })
+              }
+            />
+            <TextField
+              autoFocus
+              multiline
+              rows="5"
+              fullWidth
+              label="About"
+              margin="dense"
+              id="about"
+              type="text"
+              variant="standard"
+              value={update.about}
+              onChange={(e) =>
+                setUpdate({ ...update, about: e.target.value })
+              }
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleCloseEdit}>Cancel</Button>
+            <Button onClick={updateOrg}>Update</Button>
+          </DialogActions>
+        </Dialog>
+      )}
     </>
   );
 }
