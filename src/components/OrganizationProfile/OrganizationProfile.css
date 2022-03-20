@@ -1,21 +1,17 @@
-.org-card * {
+.org-box * {
   margin: 0px;
   border-radius: 4px;
   overflow: hidden;
 }
 
-.org-card {
+.org-box {
   position: relative;
 }
 
-.org-card .favorite-overlay {
+.org-box .edit-button {
   position: absolute;
   top: 5px;
   right: 5px;
   color: #333;
   background-color: #ffffffd5;
-}
-
-.org-card .favorite-overlay:hover {
-  cursor: pointer;
 }

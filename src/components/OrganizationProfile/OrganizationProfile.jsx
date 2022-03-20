@@ -2,6 +2,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import './OrganizationProfile.css'
+
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -38,6 +40,9 @@ function OrganizationProfile() {
     org_location: org.org_location,
     org_img_url: org.org_img_url,
     about: org.about,
+    instagram_url: org.instagram_url,
+    facebook_url: org.facebook_url,
+    twitter_url: org.twitter_url,
   };
 
   // Storing the local updates to the organization in here
@@ -72,21 +77,27 @@ function OrganizationProfile() {
         <Typography gutterBottom variant="h6" component="div">
           {org.org_name}
         </Typography>
-        <Box
-          component="img"
-          sx={{
-            height: 'auto',
-            width: 350,
-            maxHeight: { xs: 233, md: 167 },
-            maxWidth: { xs: 350, md: 250 },
-          }}
-          alt=""
-          src={org.org_img_url}
-        />
-
-        <Button size="small" variant="outlined" onClick={handleClickOpen}>
-          Edit
-        </Button>
+        <div className="org-box">
+          <Box
+            component="img"
+            sx={{
+              height: 'auto',
+              width: 350,
+              maxHeight: { xs: 233, md: 167 },
+              maxWidth: { xs: 350, md: 250 },
+            }}
+            alt=""
+            src={org.org_img_url}
+          />
+          <Button
+            className="edit-button"
+            size="small"
+            variant="contained"
+            onClick={handleClickOpen}
+          >
+            Edit
+          </Button>
+        </div>
       </Grid>
       <Typography gutterBottom variant="b1" component="div">
         About:
@@ -138,7 +149,7 @@ function OrganizationProfile() {
       </Grid>
       {open && (
         <Dialog open={open} onClose={handleCloseEdit}>
-          <DialogTitle>Edit {org.org_name}</DialogTitle>
+          <DialogTitle>{org.org_name}</DialogTitle>
           <DialogContent>
             <TextField
               autoFocus
@@ -156,7 +167,7 @@ function OrganizationProfile() {
             <TextField
               autoFocus
               multiline
-              rows="5"
+              rows="2"
               fullWidth
               label="Location"
               margin="dense"
@@ -171,7 +182,7 @@ function OrganizationProfile() {
             <TextField
               autoFocus
               multiline
-              rows="5"
+              rows="4"
               fullWidth
               label="Image"
               margin="dense"
@@ -194,9 +205,46 @@ function OrganizationProfile() {
               type="text"
               variant="standard"
               value={update.about}
-              onChange={(e) =>
-                setUpdate({ ...update, about: e.target.value })
-              }
+              onChange={(e) => setUpdate({ ...update, about: e.target.value })}
+            />
+            <TextField
+              autoFocus
+              multiline
+              rows="1"
+              fullWidth
+              label="Instagram"
+              margin="dense"
+              id="about"
+              type="text"
+              variant="standard"
+              value={update.instagram_url}
+              onChange={(e) => setUpdate({ ...update, about: e.target.value })}
+            />
+            <TextField
+              autoFocus
+              multiline
+              rows="1"
+              fullWidth
+              label="Facebook"
+              margin="dense"
+              id="about"
+              type="text"
+              variant="standard"
+              value={update.facebook_url}
+              onChange={(e) => setUpdate({ ...update, about: e.target.value })}
+            />
+            <TextField
+              autoFocus
+              multiline
+              rows="1"
+              fullWidth
+              label="Twitter"
+              margin="dense"
+              id="about"
+              type="text"
+              variant="standard"
+              value={update.twitter_url}
+              onChange={(e) => setUpdate({ ...update, about: e.target.value })}
             />
           </DialogContent>
           <DialogActions>
