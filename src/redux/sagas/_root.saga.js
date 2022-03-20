@@ -13,6 +13,7 @@ import postFavProg from './postFavProg.saga';
 import deleteFavProg from './deleteFavProg.saga';
 import getFavProg from './getFavProg.saga';
 import orgProfile from './orgProfile';
+import editOrg from './editOrg.saga'
 
 
 // rootSaga is the primary saga.
@@ -38,5 +39,6 @@ export default function* rootSaga() {
     deleteFavProg(),
     getFavProg(),
     orgProfile(),
+    editOrg(),
   ]);
 }

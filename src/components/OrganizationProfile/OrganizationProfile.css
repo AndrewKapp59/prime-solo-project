@@ -1,0 +1,17 @@
+.org-box * {
+  margin: 0px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.org-box {
+  position: relative;
+}
+
+.org-box .edit-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: #333;
+  background-color: #ffffffd5;
+}

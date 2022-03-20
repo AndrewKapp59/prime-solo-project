@@ -55,7 +55,7 @@ function ProgramItem({ program }) {
     <Card 
     className='prog-card' 
     style={{ backgroundColor: '#dee8f1' }} 
-    sx={{ maxWidth: 500 }}
+    sx={{ width: 300}}
     >
       <CardMedia
         component="img"
@@ -81,7 +81,7 @@ function ProgramItem({ program }) {
           {organization}
         </Typography>
         <Typography gutterBottom variant="h7" component="div">
-          {deadline}
+          Deadline: {deadline}
         </Typography>
       </CardContent>
       {user.user_type === 'Artist' ? (

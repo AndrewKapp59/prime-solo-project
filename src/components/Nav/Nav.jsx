@@ -32,7 +32,7 @@ function Nav() {
               to="/login"
               style={{ textDecoration: 'none', color: 'black' }}
             >
-              Login / Register
+              Login
             </Link>
           </Button>
           <Button size="small" variant="text">
@@ -134,7 +134,7 @@ function Nav() {
               My Profile
             </Link>
           </Button>
-          <Button size="small" variant="text">
+          {/* <Button size="small" variant="text">
             <Link
               className="navLink"
               to="/"
@@ -142,7 +142,7 @@ function Nav() {
             >
               Add Program
             </Link>
-          </Button>
+          </Button> */}
         </Box>
       )}
     </div>
