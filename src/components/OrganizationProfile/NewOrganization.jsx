@@ -1,7 +1,7 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import { TextField, Button } from '@mui/material';
+import { Container, Box, Typography, TextField, Button, FormControl } from '@mui/material';
 
 function AddOrganization() {
   const history = useHistory();
@@ -34,9 +34,9 @@ function AddOrganization() {
       newOrg.twitter_url)
     ) {
       event.preventDefault();
-      dispatch({ type: 'ADD_ORG', payload: newOrg });
+      dispatch({ type: 'POST_NEW_ORG', payload: newOrg });
       setNewOrg(orgState);
-      history.push('/'); // Go to profile page after entering org info
+      // history.push('/'); // Go to profile page after entering org info
     } else {
       // If a field is not filled out
       alert('Please fill out all input fields');
@@ -46,7 +46,7 @@ function AddOrganization() {
   return (
     <>
       <Container sx={{ mt: '30px', display: 'flex', justifyContent: 'center' }}>
-        <Paper
+        <Box
           elevation={10}
           sx={{
             display: 'flex',
@@ -62,6 +62,7 @@ function AddOrganization() {
             </Typography>
             <TextField
               sx={{ margin: '10px' }}
+              autoComplete="off"
               type="text"
               label="Name"
               required
@@ -72,6 +73,7 @@ function AddOrganization() {
             />
             <TextField
               sx={{ margin: '10px' }}
+              autoComplete="off"
               type="text"
               required
               label="Image URL"
@@ -82,6 +84,7 @@ function AddOrganization() {
             />
             <TextField
               sx={{ margin: '10px' }}
+              autoComplete="off"
               type="text"
               required
               label="Image URL"
@@ -92,6 +95,7 @@ function AddOrganization() {
             />
             <TextField
               sx={{ margin: '10px' }}
+              autoComplete="off"
               required
               multiline
               rows="5"
@@ -101,6 +105,7 @@ function AddOrganization() {
             />
             <TextField
               sx={{ margin: '10px' }}
+              autoComplete="off"
               type="text"
               required
               label="Instagram URL"
@@ -111,6 +116,7 @@ function AddOrganization() {
             />
             <TextField
               sx={{ margin: '10px' }}
+              autoComplete="off"
               type="text"
               required
               label="Facebook URL"
@@ -121,6 +127,7 @@ function AddOrganization() {
             />
             <TextField
               sx={{ margin: '10px' }}
+              autoComplete="off"
               type="text"
               required
               label="Twitter URL"
@@ -138,16 +145,14 @@ function AddOrganization() {
               mt: '10px',
             }}
           >
-            <Button
-              variant="outlined"
-              onClick={addOrg}
-              sx={{ margin: '10px' }}
-            >
+            <Button variant="outlined" onClick={addOrg} sx={{ margin: '10px' }}>
               <Typography variant="h6">Submit</Typography>
             </Button>
           </Box>
-        </Paper>
+        </Box>
       </Container>
     </>
   );
 }
+
+export default AddOrganization;

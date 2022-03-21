@@ -48,7 +48,7 @@ function OrganizationDetails() {
           src={org.org_img_url}
         />
       </Grid>
-      <Typography gutterBottom variant="b1" component="div">
+      <Typography backgroundColor="#d4ebf2" gutterBottom variant="b1" component="div">
         About:
         <Typography gutterBottom variant="b2" component="div">
           {org.about}

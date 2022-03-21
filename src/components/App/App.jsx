@@ -22,6 +22,7 @@ import ProgramDetails from '../ProgramsList/ProgramDetails';
 import OrganizationsList from '../OrganizationsList/OrganizationsList';
 import OrganizationDetails from '../OrganizationsList/OrganizationDetails';
 import OrganizationProfile from '../OrganizationProfile/OrganizationProfile';
+import NewOrganization from '../OrganizationProfile/NewOrganization'
 
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -102,6 +103,14 @@ function App() {
             path="/favorites"
           >
             <Favorites />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/new-organization"
+          >
+            <NewOrganization />
           </ProtectedRoute>
 
           <ProtectedRoute
