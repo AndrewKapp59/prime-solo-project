@@ -18,6 +18,11 @@ function OrgProgramItem({ program }) {
 
   const user = useSelector((store) => store.user);
 
+  const img = program.prog_img_url;
+  const name = program.prog_name;
+  const organization = program.org_name;
+  const deadline = program.deadline;
+
   const handleSelectedProgram = (program) => {
     history.push(`/program-details/${program.prog_name}`);
   };
@@ -29,13 +34,8 @@ function OrgProgramItem({ program }) {
 
   const deleteProgram = () => {
     // 
-    dispatch({ type: 'DELETE_PROG', payload: program.id });
+    dispatch({ type: 'DELETE_PROG', payload: name });
   };
-
-  const img = program.prog_img_url;
-  const name = program.prog_name;
-  const organization = program.org_name;
-  const deadline = program.deadline;
 
   return (
     <Card
@@ -63,7 +63,7 @@ function OrgProgramItem({ program }) {
             className="edit-button"
             size="small"
             variant="contained"
-            onClick={deleteProgram()}
+            onClick={deleteProgram}
           >
             Delete
           </Button>

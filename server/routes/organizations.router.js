@@ -113,23 +113,4 @@ router.post('/new', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
-  let id = req.params.id;
-  console.log(id);
-  
-  let queryText = `DELETE FROM "projects" WHERE "id" = $1`
-
-  pool.query(queryText, [id])
-    .then((result) => {
-      console.log('Org project Delete successful');
-
-      res.sendStatus(200);
-    })
-    .catch((error) => {
-      console.log('Org project Delete error', error);
-
-      res.sendStatus(500);
-    })
-
-});
 module.exports = router;
