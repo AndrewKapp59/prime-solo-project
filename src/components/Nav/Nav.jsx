@@ -128,7 +128,6 @@ function Nav() {
             <Link
               className="navLink"
               to="/org-profile"
-              // to="organization-details/1"
               style={{ textDecoration: 'none', color: 'black' }}
             >
               My Profile

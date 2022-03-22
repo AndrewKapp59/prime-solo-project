@@ -3,7 +3,7 @@ import axios from 'axios'
 
 function* addFavProg(action) {
   try {
-    console.log('FAV PROG POST', action.payload);
+    console.log('FAV_PROG_POST', action.payload);
     
     yield axios.post('/api/favorites/prog', action.payload);
   }
