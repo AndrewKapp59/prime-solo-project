@@ -47,7 +47,7 @@ function FavProgItem({ favProg }) {
     <Card
       className="prog-card"
       style={{ backgroundColor: '#dee8f1' }}
-      sx={{ maxWidth: 500 }}
+      sx={{ width: 300 }}
     >
       <CardMedia
         component="img"
@@ -55,7 +55,7 @@ function FavProgItem({ favProg }) {
         image={img}
         alt={(name, 'img')}
       ></CardMedia>
-      <CardContent sx={{ maxHeight: 60 }}>
+      <CardContent >
         <Typography
           gutterBottom
           variant="h6"

@@ -36,7 +36,7 @@ function AddOrganization() {
       event.preventDefault();
       dispatch({ type: 'POST_NEW_ORG', payload: newOrg });
       setNewOrg(orgState);
-      // history.push('/'); // Go to profile page after entering org info
+      // history.push('/org-profile'); // Go to profile page after entering org info
     } else {
       // If a field is not filled out
       alert('Please fill out all input fields');
@@ -75,8 +75,8 @@ function AddOrganization() {
               sx={{ margin: '10px' }}
               autoComplete="off"
               type="text"
-              required
               label="Image URL"
+              required
               value={newOrg.org_location}
               onChange={(e) =>
                 setNewOrg({ ...newOrg, org_location: e.target.value })

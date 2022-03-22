@@ -23,11 +23,13 @@ import OrganizationsList from '../OrganizationsList/OrganizationsList';
 import OrganizationDetails from '../OrganizationsList/OrganizationDetails';
 import OrganizationProfile from '../OrganizationProfile/OrganizationProfile';
 import NewOrganization from '../OrganizationProfile/NewOrganization'
+import OrgProgramList from '../ProgramsList/OrgProgramsList';
 
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 
 import { Link } from 'react-router-dom';
+
 
 // import './App.css';
 
@@ -121,6 +123,15 @@ function App() {
             <OrganizationProfile />
           </ProtectedRoute>
 
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/org-programs"
+          >
+            <OrgProgramList />
+          </ProtectedRoute>
+
+
           <Route exact path="/login"> 
             {user.id ? (
               // If the user is already logged in,
@@ -166,7 +177,7 @@ function App() {
             ) : (
               // Otherwise, they are an organization 
               // redirect them to their profile page
-              <Redirect to="/org-profile" />
+              <Redirect to="/new-organization" />
             )}
           </Route>
 
