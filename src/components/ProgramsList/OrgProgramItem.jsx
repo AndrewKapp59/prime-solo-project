@@ -3,48 +3,34 @@ import { useHistory } from 'react-router-dom';
 import * as React from 'react';
 import { useState } from 'react';
 
-import './ProgramList.css'
+import './ProgramList.css';
 
 // Material UI Imports
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
-import BookmarkIcon from '@mui/icons-material/Bookmark';
-
+import Button from '@mui/material/Button';
 
 function OrgProgramItem({ program }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
   const user = useSelector((store) => store.user);
-  const [favorite, setFavorite] = useState(false);
 
   const handleSelectedProgram = (program) => {
     history.push(`/program-details/${program.prog_name}`);
   };
 
-  // const handleSelectedOrganization = (favProg) => {
-  //   history.push(`/organization-details/${favProg.org_id}`);
-  // };
+  const handleClickOpen = () => {
+    // Opens edit Dialog box.
+    setOpen(true);
+  };
 
-  // const addFavorite = () => {
-  //   console.log("Adding Favorite");
-  //   const postOptions = {
-  //     prog_id: program.id,
-  //     user_id: user.id
-  //   };
-  //   dispatch({ type: "POST_FAV_PROG", payload: postOptions });
-  //   setFavorite(true);
-  // };
-
-  // const removeFavorite = () => {
-  //   console.log('Removing Favorite');
-  //   dispatch({ type: "DELETE_FAV_PROG", payload: program.id });
-  //   setFavorite(false);
-  // };
-
+  const deleteProgram = () => {
+    // 
+    dispatch({ type: 'DELETE_PROG', payload: program.id });
+  };
 
   const img = program.prog_img_url;
   const name = program.prog_name;
@@ -52,10 +38,10 @@ function OrgProgramItem({ program }) {
   const deadline = program.deadline;
 
   return (
-    <Card 
-    className='prog-card' 
-    style={{ backgroundColor: '#dee8f1' }} 
-    sx={{ width: 300}}
+    <Card
+      className="prog-card"
+      style={{ backgroundColor: '#dee8f1' }}
+      sx={{ width: 300 }}
     >
       <CardMedia
         component="img"
@@ -63,20 +49,43 @@ function OrgProgramItem({ program }) {
         image={img}
         alt={(name, 'Poster')}
       />
-      <CardContent >
-        <Typography 
-        gutterBottom 
-        variant="h6" 
-        component="div"
-        onClick={() => handleSelectedProgram(program)}
+      {user.user_type === 'Organization' ? (
+        <div className="edit-delete-overlay">
+          <Button
+            className="edit-button"
+            size="small"
+            variant="contained"
+            onClick={handleClickOpen}
+          >
+            Edit
+          </Button>
+          <Button
+            className="edit-button"
+            size="small"
+            variant="contained"
+            onClick={deleteProgram()}
+          >
+            Delete
+          </Button>
+        </div>
+      ) : (
+        <div></div>
+      )}
+
+      <CardContent>
+        <Typography
+          gutterBottom
+          variant="h6"
+          component="div"
+          onClick={() => handleSelectedProgram(program)}
         >
           {name}
         </Typography>
-        <Typography 
-        gutterBottom 
-        variant="h7" 
-        component="div"
-        onClick={() => handleSelectedOrganization(program)}
+        <Typography
+          gutterBottom
+          variant="h7"
+          component="div"
+          onClick={() => handleSelectedOrganization(program)}
         >
           {organization}
         </Typography>
@@ -84,18 +93,6 @@ function OrgProgramItem({ program }) {
           Deadline: {deadline}
         </Typography>
       </CardContent>
-      {user.user_type === 'Artist' ? (
-        <div className="favorite-overlay">
-          {!favorite && (
-            <BookmarkBorderIcon onClick={addFavorite} fontSize="medium" />
-          )}
-          {favorite && (
-            <BookmarkIcon onClick={removeFavorite} fontSize="medium" />
-          )}
-        </div>
-      ) : (
-        <div></div>
-      )}
     </Card>
   );
 }
