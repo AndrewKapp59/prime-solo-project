@@ -41,5 +41,24 @@ router.get('/:name', (req, res) => {
     });
 });
 
+router.delete('/:name', (req, res) => {
+  let name = req.params.name;
+  console.log(name);
+  
+  let queryText = `DELETE FROM "programs" WHERE "prog_name" = $1;`
+
+  pool.query(queryText, [name])
+    .then((result) => {
+      console.log('Org project Delete successful');
+
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log('Org project Delete error', error);
+
+      res.sendStatus(500);
+    })
+
+});
 
 module.exports = router

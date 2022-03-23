@@ -11,6 +11,11 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 function OrgProgramItem({ program }) {
   const dispatch = useDispatch();
@@ -18,24 +23,38 @@ function OrgProgramItem({ program }) {
 
   const user = useSelector((store) => store.user);
 
-  const handleSelectedProgram = (program) => {
-    history.push(`/program-details/${program.prog_name}`);
-  };
-
-  const handleClickOpen = () => {
-    // Opens edit Dialog box.
-    setOpen(true);
-  };
-
-  const deleteProgram = () => {
-    // 
-    dispatch({ type: 'DELETE_PROG', payload: program.id });
-  };
-
   const img = program.prog_img_url;
   const name = program.prog_name;
   const organization = program.org_name;
   const deadline = program.deadline;
+
+  const handleSelectedProgram = (program) => {
+    history.push(`/program-details/${program.prog_name}`);
+  };
+
+  const [alert, setAlert] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpenAlert = () => {
+    setAlert(true);
+  };
+
+  const handleCloseAlert = () => {
+    setAlert(false);
+  };
+
+  const deleteProgram = () => {
+    dispatch({ type: 'DELETE_PROG', payload: name });
+    setAlert(false);
+  };
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <Card
@@ -63,10 +82,31 @@ function OrgProgramItem({ program }) {
             className="edit-button"
             size="small"
             variant="contained"
-            onClick={deleteProgram()}
+            onClick={handleClickOpenAlert}
           >
             Delete
           </Button>
+          <Dialog
+            open={alert}
+            onClose={handleCloseAlert}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title">
+              {"Are you sure you want to delete this program?"}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                Once this program is deleted you will not be able to recover it. 
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleCloseAlert}>Cancel</Button>
+              <Button onClick={deleteProgram} autoFocus>
+                Delete
+              </Button>
+            </DialogActions>
+          </Dialog>
         </div>
       ) : (
         <div></div>
