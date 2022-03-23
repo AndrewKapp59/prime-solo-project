@@ -16,6 +16,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import TextField from '@mui/material/TextField';
 
 function OrgProgramItem({ program }) {
   const dispatch = useDispatch();
@@ -28,12 +29,33 @@ function OrgProgramItem({ program }) {
   const organization = program.org_name;
   const deadline = program.deadline;
 
+  const [update, setUpdate] = useState(updateState);
+
+  const updateState = {
+    prog_name: program.prog_name,
+    prog_location: program.prog_location,
+    prog_img_url: program.prog_img_url,
+    description: program.description,
+    start_date: program.start_date,
+    end_date: program.end_date,
+    deadline: program.deadline,
+    app_url: program.app_url,
+    funding_amount: program.funding_amount,
+    cost_amount: program.cost_amount,
+    housing: program.housing,
+    meals: program.meals,
+    accessibility: program.accessibility,
+    public_programs: program.public_programs,
+    discipline: program.discipline,
+    facilities: program.facilities,
+  };
+
+
   const handleSelectedProgram = (program) => {
     history.push(`/program-details/${program.prog_name}`);
   };
 
   const [alert, setAlert] = React.useState(false);
-  const [open, setOpen] = React.useState(false);
 
   const handleClickOpenAlert = () => {
     setAlert(true);
@@ -48,11 +70,13 @@ function OrgProgramItem({ program }) {
     setAlert(false);
   };
 
+  const [open, setOpen] = React.useState(false);
+
   const handleClickOpen = () => {
     setOpen(true);
   };
 
-  const handleClose = () => {
+  const handleCloseEdit = () => {
     setOpen(false);
   };
 
@@ -78,6 +102,120 @@ function OrgProgramItem({ program }) {
           >
             Edit
           </Button>
+          {open && (
+            <Dialog open={open} onClose={handleCloseEdit}>
+              <DialogTitle>{program.prog_name}</DialogTitle>
+              <DialogContent>
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  id="prog_name"
+                  label="Name"
+                  type="text"
+                  fullWidth
+                  variant="standard"
+                  value={update.prog_name}
+                  onChange={(e) =>
+                    setUpdate({ ...update, prog_name: e.target.value })
+                  }
+                />
+                <TextField
+                  autoFocus
+                  multiline
+                  rows="2"
+                  fullWidth
+                  label="Location"
+                  margin="dense"
+                  id="prog_location"
+                  type="text"
+                  variant="standard"
+                  value={update.prog_location}
+                  onChange={(e) =>
+                    setUpdate({ ...update, prog_location: e.target.value })
+                  }
+                />
+                <TextField
+                  autoFocus
+                  multiline
+                  rows="4"
+                  fullWidth
+                  label="Image"
+                  margin="dense"
+                  id="prog_img_url"
+                  type="text"
+                  variant="standard"
+                  value={update.prog_img_url}
+                  onChange={(e) =>
+                    setUpdate({ ...update, prog_img_url: e.target.value })
+                  }
+                />
+                <TextField
+                  autoFocus
+                  multiline
+                  rows="5"
+                  fullWidth
+                  label="About"
+                  margin="dense"
+                  id="description"
+                  type="text"
+                  variant="standard"
+                  value={update.description}
+                  onChange={(e) =>
+                    setUpdate({ ...update, description: e.target.value })
+                  }
+                />
+                <TextField
+                  autoFocus
+                  multiline
+                  rows="1"
+                  fullWidth
+                  label="Instagram"
+                  margin="dense"
+                  id="about"
+                  type="text"
+                  variant="standard"
+                  value={update.instagram_url}
+                  onChange={(e) =>
+                    setUpdate({ ...update, about: e.target.value })
+                  }
+                />
+                <TextField
+                  autoFocus
+                  multiline
+                  rows="1"
+                  fullWidth
+                  label="Facebook"
+                  margin="dense"
+                  id="about"
+                  type="text"
+                  variant="standard"
+                  value={update.facebook_url}
+                  onChange={(e) =>
+                    setUpdate({ ...update, about: e.target.value })
+                  }
+                />
+                <TextField
+                  autoFocus
+                  multiline
+                  rows="1"
+                  fullWidth
+                  label="Twitter"
+                  margin="dense"
+                  id="about"
+                  type="text"
+                  variant="standard"
+                  value={update.twitter_url}
+                  onChange={(e) =>
+                    setUpdate({ ...update, about: e.target.value })
+                  }
+                />
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleCloseEdit}>Cancel</Button>
+                <Button onClick={updateOrg}>Update</Button>
+              </DialogActions>
+            </Dialog>
+          )}
           <Button
             className="edit-button"
             size="small"
@@ -93,11 +231,11 @@ function OrgProgramItem({ program }) {
             aria-describedby="alert-dialog-description"
           >
             <DialogTitle id="alert-dialog-title">
-              {"Are you sure you want to delete this program?"}
+              {'Are you sure you want to delete this program?'}
             </DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
-                Once this program is deleted you will not be able to recover it. 
+                Once this program is deleted you will not be able to recover it.
               </DialogContentText>
             </DialogContent>
             <DialogActions>
