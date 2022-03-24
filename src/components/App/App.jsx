@@ -4,6 +4,7 @@ import {
   Redirect,
   Route,
   Switch,
+  useHistory
 } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -24,6 +25,7 @@ import OrganizationDetails from '../OrganizationsList/OrganizationDetails';
 import OrganizationProfile from '../OrganizationProfile/OrganizationProfile';
 import NewOrganization from '../OrganizationProfile/NewOrganization';
 import OrgProgramList from '../ProgramsList/OrgProgramsList';
+import CustomRoute from '../CustomRoute/CustomRoute';
 
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -165,42 +167,22 @@ function App() {
             )}
           </Route> */}
 
-
-            <Route exact path="/login">
+          <Route exact path="/login">
             {user.id ? (
-              // If the user is logged in 
-              <Redirect to="/user1" />
+              // this goes to the following CustomRoute to determine
+              // what type of user it is
+              <Redirect to='/user1'/>
             ) : (
               // Otherwise, show the login page
               <LoginPage />
             )}
           </Route>
 
-          <Route exact path="/user1">
-            {user.user_type === 'Artist' ? (
-              // If the user is logged in 
-              <Redirect to="/favorites" />
-            ) : (
-              // Otherwise, they are an organization 
-              <Redirect to="/org-profile" />
-            )}
-          </Route>
-
-          {/* <Route exact path="/user1">
-            {user.user_type === 'Artist' && (
-              // If the user is an Artist,
-              // redirect to the /user1 page
-              <Redirect to="/favorites" />)}
-       
-          </Route>
-
-          <Route exact path="/user1">
-            {user.user_type === 'Organization' && (
-              // If the user is already logged in,
-              // redirect to the /user1 page
-              <Redirect to="/org-profile" />)}
-       
-          </Route> */}
+          // from login, has logic to determine next url
+          <CustomRoute exact path="/user1">
+            <Favorites />
+            <OrganizationProfile />
+          </CustomRoute>
 
           <Route exact path="/registration">
             {user.id ? (

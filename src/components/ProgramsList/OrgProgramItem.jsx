@@ -24,12 +24,12 @@ function OrgProgramItem({ program }) {
 
   const user = useSelector((store) => store.user);
 
+  // const name = program.id;
   const img = program.prog_img_url;
   const name = program.prog_name;
   const organization = program.org_name;
   const deadline = program.deadline;
 
-  const [update, setUpdate] = useState(updateState);
 
   const updateState = {
     prog_name: program.prog_name,
@@ -50,6 +50,15 @@ function OrgProgramItem({ program }) {
     facilities: program.facilities,
   };
 
+  const [update, setUpdate] = useState(updateState);
+
+  const updateProg = (e) => {
+    e.preventDefault();
+    // Sending dispatch to saga to handle the edit program function
+    dispatch({ type: 'EDIT_PROG', payload: { update, name } });
+    setOpen(false); // Close the edit dialog
+    setUpdate(updateState); // reset the edit state to default
+  };
 
   const handleSelectedProgram = (program) => {
     history.push(`/program-details/${program.prog_name}`);
@@ -154,7 +163,7 @@ function OrgProgramItem({ program }) {
                   multiline
                   rows="5"
                   fullWidth
-                  label="About"
+                  label="Description"
                   margin="dense"
                   id="description"
                   type="text"
@@ -169,14 +178,14 @@ function OrgProgramItem({ program }) {
                   multiline
                   rows="1"
                   fullWidth
-                  label="Instagram"
+                  label="Start Date"
                   margin="dense"
                   id="about"
                   type="text"
                   variant="standard"
-                  value={update.instagram_url}
+                  value={update.start_date}
                   onChange={(e) =>
-                    setUpdate({ ...update, about: e.target.value })
+                    setUpdate({ ...update, start_date: e.target.value })
                   }
                 />
                 <TextField
@@ -184,14 +193,14 @@ function OrgProgramItem({ program }) {
                   multiline
                   rows="1"
                   fullWidth
-                  label="Facebook"
+                  label="End Date"
                   margin="dense"
                   id="about"
                   type="text"
                   variant="standard"
-                  value={update.facebook_url}
+                  value={update.end_date}
                   onChange={(e) =>
-                    setUpdate({ ...update, about: e.target.value })
+                    setUpdate({ ...update, end_date: e.target.value })
                   }
                 />
                 <TextField
@@ -199,20 +208,155 @@ function OrgProgramItem({ program }) {
                   multiline
                   rows="1"
                   fullWidth
-                  label="Twitter"
+                  label="Deadline"
                   margin="dense"
                   id="about"
                   type="text"
                   variant="standard"
-                  value={update.twitter_url}
+                  value={update.deadline}
                   onChange={(e) =>
-                    setUpdate({ ...update, about: e.target.value })
+                    setUpdate({ ...update, deadline: e.target.value })
+                  }
+                />
+                <TextField
+                  autoFocus
+                  multiline
+                  rows="1"
+                  fullWidth
+                  label="App Url"
+                  margin="dense"
+                  id="about"
+                  type="text"
+                  variant="standard"
+                  value={update.app_url}
+                  onChange={(e) =>
+                    setUpdate({ ...update, app_url: e.target.value })
+                  }
+                />
+                <TextField
+                  autoFocus
+                  multiline
+                  rows="1"
+                  fullWidth
+                  label="Funding Amount"
+                  margin="dense"
+                  id="about"
+                  type="text"
+                  variant="standard"
+                  value={update.funding_amount}
+                  onChange={(e) =>
+                    setUpdate({ ...update, funding_amount: e.target.value })
+                  }
+                />
+                <TextField
+                  autoFocus
+                  multiline
+                  rows="1"
+                  fullWidth
+                  label="Cost Amount"
+                  margin="dense"
+                  id="about"
+                  type="text"
+                  variant="standard"
+                  value={update.cost_amount}
+                  onChange={(e) =>
+                    setUpdate({ ...update, cost_amount: e.target.value })
+                  }
+                />
+                <TextField
+                  autoFocus
+                  multiline
+                  rows="1"
+                  fullWidth
+                  label="Housing"
+                  margin="dense"
+                  id="about"
+                  type="text"
+                  variant="standard"
+                  value={update.housing}
+                  onChange={(e) =>
+                    setUpdate({ ...update, housing: e.target.value })
+                  }
+                />
+                <TextField
+                  autoFocus
+                  multiline
+                  rows="1"
+                  fullWidth
+                  label="Meals"
+                  margin="dense"
+                  id="about"
+                  type="text"
+                  variant="standard"
+                  value={update.meals}
+                  onChange={(e) =>
+                    setUpdate({ ...update, meals: e.target.value })
+                  }
+                />
+                <TextField
+                  autoFocus
+                  multiline
+                  rows="1"
+                  fullWidth
+                  label="Accessibility"
+                  margin="dense"
+                  id="about"
+                  type="text"
+                  variant="standard"
+                  value={update.accessibility}
+                  onChange={(e) =>
+                    setUpdate({ ...update, accessibility: e.target.value })
+                  }
+                />
+                <TextField
+                  autoFocus
+                  multiline
+                  rows="1"
+                  fullWidth
+                  label="Public Programs"
+                  margin="dense"
+                  id="about"
+                  type="text"
+                  variant="standard"
+                  value={update.public_programs}
+                  onChange={(e) =>
+                    setUpdate({ ...update, public_programs: e.target.value })
+                  }
+                />
+                <TextField
+                  autoFocus
+                  multiline
+                  rows="1"
+                  fullWidth
+                  label="Discipline"
+                  margin="dense"
+                  id="about"
+                  type="text"
+                  variant="standard"
+                  value={update.discipline}
+                  onChange={(e) =>
+                    setUpdate({ ...update, discipline: e.target.value })
+                  }
+                />
+                <TextField
+                  autoFocus
+                  multiline
+                  rows="1"
+                  fullWidth
+                  label="Facilities"
+                  margin="dense"
+                  id="about"
+                  type="text"
+                  variant="standard"
+                  value={update.facilities}
+                  onChange={(e) =>
+                    setUpdate({ ...update, facilities: e.target.value })
                   }
                 />
               </DialogContent>
               <DialogActions>
                 <Button onClick={handleCloseEdit}>Cancel</Button>
-                <Button onClick={updateOrg}>Update</Button>
+                <Button onClick={updateProg}>Update</Button>
               </DialogActions>
             </Dialog>
           )}
