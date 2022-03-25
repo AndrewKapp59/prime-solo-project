@@ -143,7 +143,7 @@ function Nav() {
           <Button size="small" variant="text">
             <Link
               className="navLink"
-              to="/"
+              to="/new-program"
               style={{ textDecoration: 'none', color: 'black' }}
             >
               Add Program

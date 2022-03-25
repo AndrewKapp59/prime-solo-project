@@ -26,6 +26,7 @@ import OrganizationProfile from '../OrganizationProfile/OrganizationProfile';
 import NewOrganization from '../OrganizationProfile/NewOrganization';
 import OrgProgramList from '../ProgramsList/OrgProgramsList';
 import CustomRoute from '../CustomRoute/CustomRoute';
+import NewProgram from '../ProgramsList/NewProgram';
 
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -132,40 +133,13 @@ function App() {
             <OrgProgramList />
           </ProtectedRoute>
 
-          {/* <Route exact path="/login">
-            {user.id && user.user_type === 'Organization' && (
-              // If the user is already logged in,
-              // redirect to the /user page
-
-              <Redirect to="/org-profile" />
-            ) : (
-              // Otherwise, show the login page
-              <LoginPage />
-            )}
-          </Route>
-
-          <Route exact path="/login">
-            {user.id && user.user_type === 'Artist' && (
-              // If the user is already logged in,
-              // redirect to the /user page
-
-              <Redirect to="/favorites" />
-            ) : (
-              // Otherwise, show the login page
-              <LoginPage />
-            )}
-          </Route> */}
-          {/* 
-          <Route exact path="/user1"> 
-            {user.user_type === 'Artist' ? (
-              // If the user is already logged in,
-              // redirect to the /user1 page
-              <Redirect to="/favorites" />
-            ) : (
-              // Otherwise, they are an organization
-              <Redirect to="/org-profile" />
-            )}
-          </Route> */}
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/new-program"
+          >
+            <NewProgram />
+          </ProtectedRoute>
 
           <Route exact path="/login">
             {user.id ? (
@@ -197,27 +171,16 @@ function App() {
           </Route>
 
           <Route exact path="/user2">
-            {user.user_type === 'Artist' ? (
+            {user.user_type === 'Organization' ? (
               // If the user is an artist,
               // redirect them to the /favorites page
-              <Redirect to="/favorites" />
+              <Redirect to="/new-organization" />
             ) : (
               // Otherwise, they are an organization
               // redirect them to their profile page
-              <Redirect to="/new-organization" />
+              <Redirect to="/favorites" />
             )}
           </Route>
-
-          {/* <Route exact path="/registration">
-            {user.user_type === 'Organization' ? (
-              // If the user is already logged in,
-              // redirect them to the /user page
-              <Redirect to="/org-programs" />
-            ) : (
-              // Otherwise, show the registration page
-              <RegisterPage />
-            )}
-          </Route> */}
 
           <Route exact path="/home">
             <LandingPage />
