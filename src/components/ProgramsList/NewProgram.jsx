@@ -36,7 +36,7 @@ function NewProgram() {
     if (
       (newProg.name,
       newProg.location,
-      newProg.img_url,
+      newProg.prog_img_url,
       newProg.description,
       newProg.start_date,
       newProg.end_date,
@@ -106,7 +106,7 @@ function NewProgram() {
               type="text"
               required
               label="Image URL"
-              value={newProg.img_url}
+              value={newProg.prog_img_url}
               onChange={(e) =>
                 setNewProg({ ...newProg, prog_img_url: e.target.value })
               }
@@ -118,7 +118,7 @@ function NewProgram() {
               multiline
               rows="5"
               label="Description"
-              value={newProg.about}
+              value={newProg.description}
               onChange={(e) => 
                 setNewProg({ ...newProg, description: e.target.value })}
             />
@@ -139,7 +139,7 @@ function NewProgram() {
               type="text"
               required
               label="End Date"
-              value={newProg.facebook_url}
+              value={newProg.end_date}
               onChange={(e) =>
                 setNewProg({ ...newProg, end_date: e.target.value })
               }
