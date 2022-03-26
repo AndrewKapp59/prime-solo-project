@@ -18,6 +18,7 @@ import newOrgSaga from './postNewOrg.saga';
 import deleteProg from './deleteProgram.saga';
 import editProg from './editProg.saga';
 import newProgSaga from './postNewProg.saga';
+import orgProgDetails from './orgProgDetails.saga';
 
 
 // rootSaga is the primary saga.
@@ -48,5 +49,6 @@ export default function* rootSaga() {
     deleteProg(),
     editProg(),
     newProgSaga(),
+    orgProgDetails(),
   ]);
 }

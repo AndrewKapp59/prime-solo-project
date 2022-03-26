@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { TextField, Button } from '@mui/material';
+import Box from '@mui/material/Box';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -14,14 +16,12 @@ function RegisterForm() {
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
 
- 
-
   console.log(value);
 
   const handleChange = (event) => {
     setValue(event.target.value);
   };
-  
+
   const registerUser = (event) => {
     event.preventDefault();
 
@@ -30,13 +30,13 @@ function RegisterForm() {
       payload: {
         username: username,
         password: password,
-        user_type: value
+        user_type: value,
       },
     });
   }; // end registerUser
 
   return (
-    <form className="formPanel" onSubmit={registerUser}>
+    <Box component="form" container onSubmit={registerUser} textAlign="center">
       <h2>Register User</h2>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
@@ -44,19 +44,42 @@ function RegisterForm() {
         </h3>
       )}
       <div>
-        <label htmlFor="username">
-          Username:
-          <input
-            type="text"
-            name="username"
-            value={username}
-            required
-            onChange={(event) => setUsername(event.target.value)}
-          />
-        </label>
+        <TextField
+          htmlFor="username"
+          id="username"
+          maxRows={5}
+          sx={{ color: 'white', mt: 1, mb: 1, width: 350 }}
+          required
+          label="Username"
+          color="primary"
+          autoComplete="off"
+          value={username}
+          onChange={(event) => setUsername(event.target.value)}
+        ></TextField>
+        {/* <label htmlFor="username">
+            Username:
+            <input
+              type="text"
+              name="username"
+              value={username}
+              required
+              onChange={(event) => setUsername(event.target.value)}
+            />
+          </label> */}
       </div>
       <div>
-        <label htmlFor="password">
+        <TextField
+          id="outlined-required"
+          maxRows={5}
+          sx={{ color: 'white', mt: 1, mb: 1, width: 350 }}
+          required
+          label="Password"
+          color="primary"
+          autoComplete="off"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+        ></TextField>
+        {/* <label htmlFor="password">
           Password:
           <input
             type="password"
@@ -65,23 +88,27 @@ function RegisterForm() {
             required
             onChange={(event) => setPassword(event.target.value)}
           />
-        </label>
+        </label> */}
       </div>
       <FormControl>
-        <FormLabel id="user-type-radio-buttons-group-label">User Type</FormLabel>
-        <RadioGroup
-          row
-          value={value}
-          onChange={handleChange}
-        >
+        <FormLabel id="user-type-radio-buttons-group-label">
+          Select User Type
+        </FormLabel>
+        <RadioGroup row value={value} onChange={handleChange}>
           <FormControlLabel value="Artist" control={<Radio />} label="Artist" />
-          <FormControlLabel value="Organization" control={<Radio />} label="Organization" />
+          <FormControlLabel
+            value="Organization"
+            control={<Radio />}
+            label="Organization"
+          />
         </RadioGroup>
       </FormControl>
       <div>
-        <input className="btn" type="submit" name="submit" value="Register" />
+      <Button variant="outlined" type="submit" name="submit" value="Register">Register</Button>
+
+        {/* <input className="btn" type="submit" name="submit" value="Register" /> */}
       </div>
-    </form>
+    </Box>
   );
 }
 

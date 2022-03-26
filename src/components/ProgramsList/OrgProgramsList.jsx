@@ -12,7 +12,9 @@ function OrgProgramList() {
   const programs = useSelector((store) => store.programs);
   const user = useSelector((store) => store.user);
 
-  const orgPrograms = programs.filter(programs => programs.user_id === user.id)
+  console.log(programs);
+
+  const orgPrograms = programs.filter(programs => programs.org_user_id === user.id)
 
   return (
     <>

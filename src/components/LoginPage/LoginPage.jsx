@@ -2,6 +2,9 @@ import React from 'react';
 import LoginForm from '../LoginForm/LoginForm';
 import { useHistory } from 'react-router-dom';
 
+import { TextField, Button } from '@mui/material';
+import Box from '@mui/material/Box';
+
 function LoginPage() {
   const history = useHistory();
 
@@ -10,7 +13,18 @@ function LoginPage() {
       <LoginForm />
 
       <center>
-        <button
+        <Button
+          variant="outlined"
+          onClick={() => {
+            history.push('/registration');
+          }}
+          sx={{ m: 1 }}
+        >
+          Register
+        </Button>
+        <div className="secret">Secret</div>
+        <div className="secret"> Secret</div>
+        {/* <button
           type="button"
           className="btn btn_asLink"
           onClick={() => {
@@ -18,7 +32,7 @@ function LoginPage() {
           }}
         >
           Register
-        </button>
+        </button> */}
       </center>
     </div>
   );

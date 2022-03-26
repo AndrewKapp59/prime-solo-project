@@ -49,7 +49,7 @@ function ProgramDetails() {
         Funding: ${prog.funding_amount}
       </Typography>
       <Typography gutterBottom variant="b1" component="div">
-        Costs: {prog.cost_amount}
+        Costs: ${prog.cost_amount}
       </Typography>
       <Typography gutterBottom variant="b1" component="div">
         About:
