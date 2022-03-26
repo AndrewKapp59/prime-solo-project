@@ -93,12 +93,12 @@ router.put('/edit/:name', (req, res) => {
   funding_amount = $9,
   cost_amount = $10,
   housing = $11,
-  meals = $10,
-  accessibility = $12,
-  public_programs = $13,
-  discipline = $14,
-  facilities = $15
-  WHERE prog_name = $16;
+  meals = $12,
+  accessibility = $13,
+  public_programs = $14,
+  discipline = $15,
+  facilities = $16
+  WHERE prog_name = $17;
   `;
   pool
     .query(query, [
@@ -124,8 +124,49 @@ router.put('/edit/:name', (req, res) => {
       res.sendStatus(200);
     })
     .catch((err) => {
+      console.log(err);
       res.sendStatus(500);
     });
 });
+
+router.post('/new', (req, res) => {
+  let newProg = req.body;
+  console.log(req.body);
+
+  let queryText = `
+    INSERT INTO programs ("org_id", "prog_name", "prog_location", "prog_img_url", "description", "start_date", "end_date", "deadline", "app_url", "funding_amount", "cost_amount", "housing", "meals", "accessibility", "public_programs", "discipline", "facilities")
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17);  
+  `;
+  const values = [
+    newProg.org_id,
+    newProg.prog_name,
+    newProg.prog_location,
+    newProg.prog_img_url,
+    newProg.description,
+    newProg.start_date,
+    newProg.end_date,
+    newProg.deadline,
+    newProg.app_url,
+    newProg.funding_amount,
+    newProg.cost_amount,
+    newProg.housing,
+    newProg.meals,
+    newProg.accessibility,
+    newProg.public_programs,
+    newProg.discipline,
+    newProg.facilities,
+  ];
+  pool
+    .query(queryText, values)
+    .then((result) => {
+      console.log('New program posted', result);
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log('Error with new program post', error);
+      res.sendStatus(500);
+    });
+});
+
 
 module.exports = router;

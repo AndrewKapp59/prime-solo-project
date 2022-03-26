@@ -31,6 +31,7 @@ function OrgProgramItem({ program }) {
   const deadline = program.deadline;
 
 
+
   const updateState = {
     prog_name: program.prog_name,
     prog_location: program.prog_location,
@@ -412,7 +413,7 @@ function OrgProgramItem({ program }) {
           {organization}
         </Typography>
         <Typography gutterBottom variant="h7" component="div">
-          Deadline: {deadline}
+          App Deadline: {new Date(deadline).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}
         </Typography>
       </CardContent>
     </Card>

@@ -81,7 +81,7 @@ function ProgramItem({ program }) {
           {organization}
         </Typography>
         <Typography gutterBottom variant="h7" component="div">
-          Deadline: {deadline}
+          App Deadline: {new Date(deadline).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}  
         </Typography>
       </CardContent>
       {user.user_type === 'Artist' ? (

@@ -9,7 +9,7 @@ function NewProgram() {
 
   const user = useSelector((store) => store.user);
 
-  const orgState = {
+  const progState = {
     org_id: user.id,
     prog_name: '',
     prog_location: '',
@@ -29,7 +29,7 @@ function NewProgram() {
     facilities: '',
   };
 
-  const [newProg, setNewProg] = useState(orgState);
+  const [newProg, setNewProg] = useState(progState);
 
   const addProg = (event) => {
     // If all fields have valid inputs, continue
@@ -66,7 +66,7 @@ function NewProgram() {
       <Container sx={{ mt: '30px', display: 'flex', justifyContent: 'center' }}>
         <Box
           elevation={10}
-          sx={{
+          sx={{ 
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
@@ -93,7 +93,7 @@ function NewProgram() {
               sx={{ margin: '10px' }}
               autoComplete="off"
               type="text"
-              label="Image URL"
+              label="Location"
               required
               value={newProg.prog_location}
               onChange={(e) =>

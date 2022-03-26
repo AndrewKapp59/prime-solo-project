@@ -33,7 +33,7 @@ import Box from '@mui/material/Box';
 
 import { Link } from 'react-router-dom';
 
-// import './App.css';
+import './App.css';
 
 function App() {
   const dispatch = useDispatch();
@@ -49,7 +49,7 @@ function App() {
   return (
     <Router>
       <div>
-        <Box textAlign="center">
+        <Box textAlign="center" >
           <Button variant="text" className="nav">
             <Link to="/home" style={{ textDecoration: 'none', color: 'black' }}>
               <h2 className="nav-title">Art Rez</h2>
