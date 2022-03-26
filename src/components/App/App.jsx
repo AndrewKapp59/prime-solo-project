@@ -4,6 +4,7 @@ import {
   Redirect,
   Route,
   Switch,
+  useHistory
 } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,16 +23,17 @@ import ProgramDetails from '../ProgramsList/ProgramDetails';
 import OrganizationsList from '../OrganizationsList/OrganizationsList';
 import OrganizationDetails from '../OrganizationsList/OrganizationDetails';
 import OrganizationProfile from '../OrganizationProfile/OrganizationProfile';
-import NewOrganization from '../OrganizationProfile/NewOrganization'
+import NewOrganization from '../OrganizationProfile/NewOrganization';
 import OrgProgramList from '../ProgramsList/OrgProgramsList';
+import CustomRoute from '../CustomRoute/CustomRoute';
+import NewProgram from '../ProgramsList/NewProgram';
 
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 
 import { Link } from 'react-router-dom';
 
-
-// import './App.css';
+import './App.css';
 
 function App() {
   const dispatch = useDispatch();
@@ -47,7 +49,7 @@ function App() {
   return (
     <Router>
       <div>
-        <Box textAlign="center">
+        <Box textAlign="center" >
           <Button variant="text" className="nav">
             <Link to="/home" style={{ textDecoration: 'none', color: 'black' }}>
               <h2 className="nav-title">Art Rez</h2>
@@ -131,38 +133,37 @@ function App() {
             <OrgProgramList />
           </ProtectedRoute>
 
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/new-program"
+          >
+            <NewProgram />
+          </ProtectedRoute>
 
-          <Route exact path="/login"> 
+          <Route exact path="/login">
             {user.id ? (
-              // If the user is already logged in,
-              // redirect to the /user page
-
-              <Redirect to="/user1" />
-
+              // this goes to the following CustomRoute to determine
+              // what type of user it is
+              <Redirect to='/user1'/>
             ) : (
               // Otherwise, show the login page
               <LoginPage />
             )}
           </Route>
 
-          <Route exact path="/user1"> 
-            {user.user_type === 'Artist' ? (
-              // If the user is already logged in,
-              // redirect to the /user1 page
-              <Redirect to="/favorites" />
-            ) : (
-              // Otherwise, they are an organization
-              <Redirect to="/org-profile" />
-            )}
-          </Route>
+          // from login, has logic to determine next url
+          <CustomRoute exact path="/user1">
+            <Favorites />
+            <OrganizationProfile />
+          </CustomRoute>
 
-          <Route exact path="/registration"> 
+          <Route exact path="/registration">
             {user.id ? (
               // If the user is already logged in,
               // redirect to the /user2 page
 
               <Redirect to="/user2" />
-
             ) : (
               // Otherwise, show the login page
               <RegisterPage />
@@ -170,28 +171,16 @@ function App() {
           </Route>
 
           <Route exact path="/user2">
-            {user.user_type === 'Artist' ? (
+            {user.user_type === 'Organization' ? (
               // If the user is an artist,
               // redirect them to the /favorites page
-              <Redirect to="/favorites" />
-            ) : (
-              // Otherwise, they are an organization 
-              // redirect them to their profile page
               <Redirect to="/new-organization" />
+            ) : (
+              // Otherwise, they are an organization
+              // redirect them to their profile page
+              <Redirect to="/favorites" />
             )}
           </Route>
-
-
-          {/* <Route exact path="/registration">
-            {user.user_type === 'Organization' ? (
-              // If the user is already logged in,
-              // redirect them to the /user page
-              <Redirect to="/org-programs" />
-            ) : (
-              // Otherwise, show the registration page
-              <RegisterPage />
-            )}
-          </Route> */}
 
           <Route exact path="/home">
             <LandingPage />

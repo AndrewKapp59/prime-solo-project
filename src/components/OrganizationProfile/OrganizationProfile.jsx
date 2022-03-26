@@ -153,6 +153,7 @@ function OrganizationProfile() {
           <DialogContent>
             <TextField
               autoFocus
+              autoComplete='off'
               margin="dense"
               id="org_name"
               label="Name"

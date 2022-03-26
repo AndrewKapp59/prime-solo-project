@@ -1,15 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
+import { useHistory } from 'react-router-dom';
 // import './Nav.css';
 import { useSelector, useDispatch } from 'react-redux';
 // import Link from '@mui/material/Link';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import { Logout } from '@mui/icons-material';
 
 function Nav() {
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  const logOut = () => {
+    dispatch({ type: 'LOGOUT', payload: history });
+  }
 
   return (
     <div>
@@ -62,7 +69,7 @@ function Nav() {
           <Button
             size="small"
             variant="text"
-            onClick={() => dispatch({ type: 'LOGOUT' })}
+            onClick={logOut}
           >
             Logout
           </Button>
@@ -102,7 +109,7 @@ function Nav() {
           <Button
             size="small"
             variant="text"
-            onClick={() => dispatch({ type: 'LOGOUT' })}
+            onClick={logOut}
           >
             Logout
           </Button>
@@ -133,15 +140,15 @@ function Nav() {
               My Profile
             </Link>
           </Button>
-          {/* <Button size="small" variant="text">
+          <Button size="small" variant="text">
             <Link
               className="navLink"
-              to="/"
+              to="/new-program"
               style={{ textDecoration: 'none', color: 'black' }}
             >
               Add Program
             </Link>
-          </Button> */}
+          </Button>
         </Box>
       )}
     </div>
