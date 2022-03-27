@@ -19,7 +19,7 @@ function LandingPage() {
 
   return (
     <div>
-      <Box textAlign="center">
+      {/* <Box textAlign="center">
         <Button size="small" variant="container">
           Funded
         </Button>
@@ -29,7 +29,7 @@ function LandingPage() {
         <Button size="small" variant="container">
           Cost
         </Button>
-      </Box>
+      </Box> */}
       <ProgramList />
     </div>
   );

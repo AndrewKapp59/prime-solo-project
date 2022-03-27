@@ -61,9 +61,13 @@ function NewProgram() {
     }
   };
 
+  const addDummy = (event) => {
+    
+  }
+
   return (
     <>
-      <Container sx={{ mt: '30px', display: 'flex', justifyContent: 'center' }}>
+      <Container sx={{ display: 'flex', justifyContent: 'center' }}>
         <Box
           elevation={10}
           sx={{ 
@@ -74,8 +78,9 @@ function NewProgram() {
             p: '20px',
           }}
         >
+          <div onClick={addDummy}>Secret</div>
           <FormControl sx={{ width: '100%' }}>
-            <Typography variant="h5" sx={{ mb: '25px' }}>
+            <Typography variant="h5" textAlign="center" sx={{ mb: '2px' }}>
               Add Program Info
             </Typography>
             <TextField

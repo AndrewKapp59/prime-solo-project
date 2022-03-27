@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import OrganizationItem from './OrganizationItem';
 
 import Grid from '@mui/material/Grid';
-import { TextField, Button } from '@mui/material';
+import { TextField, Box } from '@mui/material';
 
 function OrganizationsList() {
   const organizations = useSelector((store) => store.organizations);
@@ -11,12 +11,12 @@ function OrganizationsList() {
   return (
     <>
       <div className="org-list-container">
-        <div className="searchPrograms">
+        <Box className="searchOrganizations" textAlign="center">
           <TextField
             id="standard-multiline-flexible"
             multiline
             maxRows={5}
-            sx={{ color: 'white', mt: 1, mb: 1, width: 355 }}
+            sx={{ color: 'white', mt: 1, mb: 1, width: 325, mb:2  }}
             required
             label="Search"
             color="primary"
@@ -24,7 +24,7 @@ function OrganizationsList() {
             // onChange={(event) => {addSearch}}
             // value={search}
           />
-        </div>
+        </Box>
         <Grid
           container
           spacing={2}
@@ -40,6 +40,21 @@ function OrganizationsList() {
             );
           })}
         </Grid>
+        {/* <Grid
+          container
+          spacing={2}
+          direction="column"
+          alignItems="center"
+          style={{ minHeight: '100vh' }}
+        >
+          {organizations.map((organization, index) => {
+            return (
+              <Grid key={index} item xs={3}>
+                <OrganizationItem key={index} organization={organization} />
+              </Grid>
+            );
+          })}
+        </Grid> */}
       </div>
     </>
   );
