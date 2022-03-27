@@ -61,8 +61,17 @@ function NewProgram() {
     }
   };
 
-  const addDummy = (event) => {
-    
+  const addDummy = () => {
+    setNewProg({ 
+      ...newProg, 
+      prog_name: 'Test',
+      prog_location: 'Test',
+    })
+
+
+
+
+
   }
 
   return (

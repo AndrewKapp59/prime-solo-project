@@ -4,14 +4,20 @@ import OrganizationItem from './OrganizationItem';
 
 import Grid from '@mui/material/Grid';
 import { TextField, Box } from '@mui/material';
+import Typography from '@mui/material/Typography';
 
 function OrganizationsList() {
   const organizations = useSelector((store) => store.organizations);
 
+  // organizations.filter(org.org_name => org.org_name.toLowerCase().includes(search.toLowerCase()))
+
   return (
     <>
       <div className="org-list-container">
-        <Box className="searchOrganizations" textAlign="center">
+        <Box textAlign={'center'} sx={{m:2}}>
+          <Typography variant="h6"> # of Organizations: {organizations.length}</Typography>
+        </Box>
+        {/* <Box className="searchOrganizations" textAlign="center">
           <TextField
             id="standard-multiline-flexible"
             multiline
@@ -21,10 +27,10 @@ function OrganizationsList() {
             label="Search"
             color="primary"
             autoComplete="off"
-            // onChange={(event) => {addSearch}}
-            // value={search}
+            onChange={(event) => {addSearch}}
+            value={search}
           />
-        </Box>
+        </Box> */}
         <Grid
           container
           spacing={2}

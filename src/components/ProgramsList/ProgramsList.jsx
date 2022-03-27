@@ -5,6 +5,7 @@ import useReduxStore from '../../hooks/useReduxStore';
 
 import Grid from '@mui/material/Grid';
 import { TextField, Box } from '@mui/material';
+import Typography from '@mui/material/Typography';
 
 
 function ProgramList() {
@@ -16,7 +17,10 @@ function ProgramList() {
   return (
     <>
       <div className="container" >
-        <Box className="searchPrograms" textAlign="center">
+      <Box textAlign={'center'} sx={{m:2}}>
+          <Typography variant="h6"> # of Programs: {store.programs.length}</Typography>
+      </Box>
+        {/* <Box className="searchPrograms" textAlign="center">
           <TextField
             id="standard-multiline-flexible"
             multiline
@@ -29,7 +33,7 @@ function ProgramList() {
             // onChange={(event) => {addSearch}}
             // value={search}
           />
-        </Box>
+        </Box> */}
         <Grid
           container
           spacing={2}
