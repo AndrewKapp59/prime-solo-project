@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
   const query = 
     `SELECT *
     FROM programs
-    JOIN organizations on organizations.id = programs.org_id
+    JOIN organizations on organizations.org_user_id = programs.org_id
     GROUP BY programs.id, organizations.id;`;
   pool
     .query(query)
@@ -27,7 +27,7 @@ router.get('/:name', (req, res) => {
   const query = 
     `SELECT *
     FROM programs
-    JOIN organizations on organizations.id = programs.org_id
+    JOIN organizations on organizations.org_user_id = programs.org_id
     WHERE prog_name = $1
     GROUP BY programs.id, organizations.id;`;
   pool
@@ -164,6 +164,29 @@ router.post('/new', (req, res) => {
     })
     .catch((error) => {
       console.log('Error with new program post', error);
+      res.sendStatus(500);
+    });
+});
+
+router.get('/org/:id', (req, res) => {
+  const id = req.params.id;
+  console.log('Org id', req.params.id);
+
+  const query = 
+    `SELECT 
+    STRING_AGG (housing, ', ') as housing, 
+    STRING_AGG (public_programs, ', ') as public_programs, 
+    STRING_AGG (facilities, ', ') as facilities, 
+    STRING_AGG (discipline, ', ') as discipline
+    FROM programs
+    WHERE org_id = $1;`;
+  pool
+    .query(query, [id])
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((err) => {
+      console.log('ERROR: Getting org program details', err);
       res.sendStatus(500);
     });
 });

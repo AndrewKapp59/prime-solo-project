@@ -8,6 +8,7 @@ import progDetails from './progDetails.reducer'
 import favOrgs from './favOrgs.reducer';
 import favProgs from './favProgs.reducer';
 import orgProfile from './orgProfile.reducer';
+import orgProgDetails from './orgProgDetails.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   favOrgs,
   favProgs,
   orgProfile,
+  orgProgDetails
 });
 
 export default rootReducer;

@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import { TextField, Button } from '@mui/material';
 import Box from '@mui/material/Box';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
+import FormControl from '@mui/material/FormControl';
 
 
 function LoginForm() {
@@ -11,9 +19,33 @@ function LoginForm() {
   const [password, setPassword] = useState('');
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
+  const history = useHistory();
+  
+  const [values, setValues] = React.useState({
+    password: '',
+    showPassword: false,
+  });
+
+
+  const handleClickShowPassword = () => {
+    setValues({
+      ...values,
+      showPassword: !values.showPassword,
+    });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
+  const handleChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
 
   const login = (event) => {
     event.preventDefault();
+
+
 
     if (username && password) {
       dispatch({
@@ -38,8 +70,8 @@ function LoginForm() {
       )}
       <TextField
         id="username"
-        maxRows={5}
-        sx={{ color: 'white', mt: 1, mb: 1, width: 350 }}
+        maxRows={1}
+        sx={{ color: 'white', mt: 1, mb: 1, width: 300 }}
         required
         label="Username"
         color="primary"
@@ -47,7 +79,29 @@ function LoginForm() {
         value={username}
         onChange={(event) => setUsername(event.target.value)}
       />
-      <TextField
+      <FormControl sx={{ m: 1, width: 300 }} variant="outlined">
+          <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+          <OutlinedInput
+            id="outlined-adornment-password"
+            type={values.showPassword ? 'text' : 'password'}
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+            label="Password"
+          />
+        </FormControl>
+      {/* <TextField
         id="outlined-required"
         maxRows={5}
         sx={{ color: 'white', mt: 1, mb: 1, width: 350 }}
@@ -57,10 +111,31 @@ function LoginForm() {
         autoComplete="off"
         value={password}
         onChange={(event) => setPassword(event.target.value)}
-      />
+        endAdornment={
+          <InputAdornment position="end">
+            <IconButton
+              aria-label="toggle password visibility"
+              onClick={handleClickShowPassword}
+              onMouseDown={handleMouseDownPassword}
+              edge="end"
+            >
+              {values.showPassword ? <VisibilityOff /> : <Visibility />}
+            </IconButton>
+          </InputAdornment>
+        }
+      /> */}
       <div>
         <Button variant="outlined" type="submit" name="submit" value="Log In">Login</Button>
       </div>
+      <Button
+          variant="outlined"
+          onClick={() => {
+            history.push('/registration');
+          }}
+          sx={{ m: 1 }}
+        >
+          Register
+        </Button>
     </Box>
   );
 }

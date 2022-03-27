@@ -117,7 +117,7 @@ router.get('/prog', (req, res) => {
     `SELECT *
     FROM fav_prog
     JOIN programs ON fav_prog.prog_id = programs.id 
-    JOIN organizations ON programs.org_id = organizations.id
+    JOIN organizations ON programs.org_id = organizations.org_user_id
     WHERE user_id = $1
     GROUP BY fav_prog.id, programs.id, organizations.id;`;
   pool

@@ -20,15 +20,20 @@ function OrganizationDetails() {
 
   console.log('ID is', id);
 
+
   useEffect(() => {
     // Upon load, get the selected organization details based on the params id
     dispatch({ type: 'FETCH_ORG_DETAILS', payload: id });
+    dispatch({ type: 'FETCH_ORG_PROG_DETAILS', payload: org.org_user_id });
   }, []);
 
   const org = useSelector((store) => store.orgDetails);
-  const user = useSelector((store) => store.user);
+  const prog = useSelector((store) => store.orgProgDetails);
 
-  console.log(org);
+  // console.log(org);
+  // console.log(prog)
+
+  // console.log(org.org_user_id)
 
   return (
     <>
@@ -57,19 +62,19 @@ function OrganizationDetails() {
       <Typography gutterBottom variant="b1" component="div">
         Facilities:
         <Typography gutterBottom variant="b2" component="div">
-          {org.facilities}
+          {prog.facilities}
         </Typography>
       </Typography>
       <Typography gutterBottom variant="b1" component="div">
         Public Programs:
         <Typography gutterBottom variant="b2" component="div">
-          {org.public_programs}
+          {prog.public_programs}
         </Typography>
       </Typography>
       <Typography gutterBottom variant="b1" component="div">
         Housing:
         <Typography gutterBottom variant="b2" component="div">
-          {org.housing}
+          {prog.housing}
         </Typography>
       </Typography>
       <Typography gutterBottom variant="b1" component="div">

@@ -136,7 +136,7 @@ function OrganizationProfile() {
           allowFullScreen
         ></iframe>
         <BottomNavigation sx={{ width: 'auto' }}>
-          <Link>
+          <Link href={org.instagram_url}>
             <BottomNavigationAction icon={<InstagramIcon />} />
           </Link>
           <Link href={org.twitter_url}>
@@ -215,11 +215,11 @@ function OrganizationProfile() {
               fullWidth
               label="Instagram"
               margin="dense"
-              id="about"
+              id="instagram_url"
               type="text"
               variant="standard"
               value={update.instagram_url}
-              onChange={(e) => setUpdate({ ...update, about: e.target.value })}
+              onChange={(e) => setUpdate({ ...update, instagram_url: e.target.value })}
             />
             <TextField
               autoFocus
@@ -228,11 +228,11 @@ function OrganizationProfile() {
               fullWidth
               label="Facebook"
               margin="dense"
-              id="about"
+              id="facebook_url"
               type="text"
               variant="standard"
               value={update.facebook_url}
-              onChange={(e) => setUpdate({ ...update, about: e.target.value })}
+              onChange={(e) => setUpdate({ ...update, facebook_url: e.target.value })}
             />
             <TextField
               autoFocus
@@ -241,11 +241,11 @@ function OrganizationProfile() {
               fullWidth
               label="Twitter"
               margin="dense"
-              id="about"
+              id="twitter_url"
               type="text"
               variant="standard"
               value={update.twitter_url}
-              onChange={(e) => setUpdate({ ...update, about: e.target.value })}
+              onChange={(e) => setUpdate({ ...update, twitter_url: e.target.value })}
             />
           </DialogContent>
           <DialogActions>

@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import * as React from 'react';
 import { useState } from 'react';
 
-import './ProgramList.css';
+import './OrgProgramItem.css';
 
 // Material UI Imports
 import Card from '@mui/material/Card';
@@ -29,8 +29,6 @@ function OrgProgramItem({ program }) {
   const name = program.prog_name;
   const organization = program.org_name;
   const deadline = program.deadline;
-
-
 
   const updateState = {
     prog_name: program.prog_name,
@@ -104,14 +102,24 @@ function OrgProgramItem({ program }) {
       />
       {user.user_type === 'Organization' ? (
         <div className="edit-delete-overlay">
-          <Button
-            className="edit-button"
-            size="small"
-            variant="contained"
-            onClick={handleClickOpen}
-          >
-            Edit
-          </Button>
+          <div>
+            <Button
+              className="edit-button"
+              size="small"
+              variant="text"
+              onClick={handleClickOpen}
+            >
+              Edit
+            </Button>
+            <Button
+              className="edit-button"
+              size="small"
+              variant="text"
+              onClick={handleClickOpenAlert}
+            >
+              Delete
+            </Button>
+          </div>
           {open && (
             <Dialog open={open} onClose={handleCloseEdit}>
               <DialogTitle>{program.prog_name}</DialogTitle>
@@ -361,14 +369,6 @@ function OrgProgramItem({ program }) {
               </DialogActions>
             </Dialog>
           )}
-          <Button
-            className="edit-button"
-            size="small"
-            variant="contained"
-            onClick={handleClickOpenAlert}
-          >
-            Delete
-          </Button>
           <Dialog
             open={alert}
             onClose={handleCloseAlert}
@@ -413,7 +413,13 @@ function OrgProgramItem({ program }) {
           {organization}
         </Typography>
         <Typography gutterBottom variant="h7" component="div">
-          App Deadline: {new Date(deadline).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}
+          App Deadline:{' '}
+          {new Date(deadline).toLocaleDateString('en-us', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+          })}
         </Typography>
       </CardContent>
     </Card>

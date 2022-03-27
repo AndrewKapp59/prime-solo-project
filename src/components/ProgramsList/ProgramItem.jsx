@@ -22,11 +22,13 @@ function ProgramItem({ program }) {
   const [favorite, setFavorite] = useState(false);
 
   const handleSelectedProgram = (program) => {
+    console.log(program.prog_name);
     history.push(`/program-details/${program.prog_name}`);
   };
 
-  const handleSelectedOrganization = (favProg) => {
-    history.push(`/organization-details/${favProg.org_id}`);
+  const handleSelectedOrganization = (program) => {
+    console.log(program.org_user_id);
+    history.push(`/organization-details/${program.org_id}`);
   };
 
   const addFavorite = () => {

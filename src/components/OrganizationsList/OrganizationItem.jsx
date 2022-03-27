@@ -17,6 +17,7 @@ import BookmarkIcon from '@mui/icons-material/Bookmark';
 function OrganizationItem({ organization }) {
   const history = useHistory();
   const dispatch = useDispatch();
+
   const user = useSelector((store) => store.user);
   const [favorite, setFavorite] = useState(false);
 
@@ -41,7 +42,7 @@ function OrganizationItem({ organization }) {
   };
 
   const handleSelectedOrganization = (organization) => {
-    history.push(`/organization-details/${organization.org_id}`);
+    history.push(`/organization-details/${organization.id}`);
   };
 
   const name = organization.org_name;

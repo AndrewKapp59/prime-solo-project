@@ -6,8 +6,7 @@ const pool = require('../modules/pool');
 router.get('/', (req, res) => {
   const query = `SELECT *
     FROM organizations
-    JOIN programs on programs.org_id = organizations.id 
-    GROUP BY programs.id, organizations.id;`;
+    GROUP BY organizations.id;`;
   pool
     .query(query)
     .then((result) => {
@@ -25,9 +24,8 @@ router.get('/:id', (req, res) => {
 
   const query = `SELECT *
     FROM organizations
-    JOIN programs on programs.org_id = organizations.id 
-    WHERE org_id = $1
-    GROUP BY programs.id, organizations.id;`;
+    WHERE id = $1
+    GROUP BY organizations.id;`;
   pool
     .query(query, [id])
     .then((result) => {
@@ -45,7 +43,7 @@ router.get('/user/:id', (req, res) => {
 
   const query = `SELECT *
     FROM organizations
-    JOIN programs on programs.org_id = organizations.id 
+    JOIN programs on programs.org_id = organizations.org_user_id 
     WHERE org_user_id = $1
     GROUP BY programs.id, organizations.id;`;
   pool

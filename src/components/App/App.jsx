@@ -33,7 +33,7 @@ import Box from '@mui/material/Box';
 
 import { Link } from 'react-router-dom';
 
-import './App.css';
+// import './App.css';
 
 function App() {
   const dispatch = useDispatch();
@@ -192,7 +192,7 @@ function App() {
           </Route>
         </Switch>
 
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </Router>
   );

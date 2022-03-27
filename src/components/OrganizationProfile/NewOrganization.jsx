@@ -27,7 +27,7 @@ function AddOrganization() {
     if (
       (newOrg.name,
       newOrg.location,
-      newOrg.img_url,
+      newOrg.org_img_url,
       newOrg.about,
       newOrg.instagram_url,
       newOrg.facebook_url,
@@ -75,7 +75,7 @@ function AddOrganization() {
               sx={{ margin: '10px' }}
               autoComplete="off"
               type="text"
-              label="Image URL"
+              label="Location"
               required
               value={newOrg.org_location}
               onChange={(e) =>
@@ -88,7 +88,7 @@ function AddOrganization() {
               type="text"
               required
               label="Image URL"
-              value={newOrg.img_url}
+              value={newOrg.org_img_url}
               onChange={(e) =>
                 setNewOrg({ ...newOrg, org_img_url: e.target.value })
               }
