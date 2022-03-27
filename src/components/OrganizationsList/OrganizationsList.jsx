@@ -27,7 +27,7 @@ function OrganizationsList() {
         </div>
         <Grid
           container
-          spacing={1}
+          spacing={2}
           direction="column"
           alignItems="center"
           style={{ minHeight: '100vh' }}

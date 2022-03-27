@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import { TextField, Button } from '@mui/material';
 import Box from '@mui/material/Box';
@@ -11,9 +12,12 @@ function LoginForm() {
   const [password, setPassword] = useState('');
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
-
+  const history = useHistory();
+  
   const login = (event) => {
     event.preventDefault();
+
+
 
     if (username && password) {
       dispatch({
@@ -61,6 +65,15 @@ function LoginForm() {
       <div>
         <Button variant="outlined" type="submit" name="submit" value="Log In">Login</Button>
       </div>
+      <Button
+          variant="outlined"
+          onClick={() => {
+            history.push('/registration');
+          }}
+          sx={{ m: 1 }}
+        >
+          Register
+        </Button>
     </Box>
   );
 }

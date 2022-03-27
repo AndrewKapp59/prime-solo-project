@@ -14,12 +14,14 @@ function FavPrograms() {
 
   const favProgList = useSelector((store) => store.favProgs);
 
+  console.log(favProgList);
+
   return (
     <>
     <div className="prog-list-container">
       <Grid
         container
-        spacing={0}
+        spacing={2}
         direction="column"
         alignItems="center"
         style={{ minHeight: '100vh' }}

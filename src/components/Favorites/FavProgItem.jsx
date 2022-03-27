@@ -36,7 +36,7 @@ function FavProgItem({ favProg }) {
     setFavorite(false);
   };
 
-
+console.log(favProg.org_id);
 
   const name = favProg.prog_name;
   const img = favProg.prog_img_url;
@@ -73,7 +73,7 @@ function FavProgItem({ favProg }) {
           {organization}
         </Typography>
         <Typography gutterBottom variant="h7" component="div">
-          {deadline}
+        App Deadline: {new Date(deadline).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}
         </Typography>
       </CardContent>
       {user.user_type === 'Artist' ? (

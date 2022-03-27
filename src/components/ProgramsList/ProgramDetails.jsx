@@ -43,7 +43,7 @@ function ProgramDetails() {
         />
       </Grid>
       <Typography gutterBottom variant="b1" component="div">
-        Application Deadline: {prog.deadline}
+        Application Deadline: {new Date(prog.deadline).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}
       </Typography>
       <Typography gutterBottom variant="b1" component="div">
         Funding: ${prog.funding_amount}
@@ -72,7 +72,7 @@ function ProgramDetails() {
           height="200"
           frameBorder={0}
           style={{ border: 0 }}
-          src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDX4e7v69d8lQVeWvBOcs-Bt9mFS2VVogg&q=${prog.prog_location}`}
+          src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDX4e7v69d8lQVeWvBOcs-Bt9mFS2VVogg&zoom=12&q=${prog.prog_location}`}
           allowFullScreen
         ></iframe>
       </Grid>

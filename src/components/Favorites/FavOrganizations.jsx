@@ -19,7 +19,7 @@ function FavOrganizations() {
       <div className="org-list-container">
         <Grid
           container
-          spacing={0}
+          spacing={2}
           direction="column"
           alignItems="center"
           style={{ minHeight: '100vh' }}

@@ -13,7 +13,7 @@ function LoginPage() {
       <LoginForm />
 
       <center>
-        <Button
+        {/* <Button
           variant="outlined"
           onClick={() => {
             history.push('/registration');
@@ -21,9 +21,7 @@ function LoginPage() {
           sx={{ m: 1 }}
         >
           Register
-        </Button>
-        <div className="secret">Secret</div>
-        <div className="secret"> Secret</div>
+        </Button> */}
         {/* <button
           type="button"
           className="btn btn_asLink"

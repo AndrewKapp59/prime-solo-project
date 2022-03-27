@@ -14,6 +14,7 @@ import BookmarkIcon from '@mui/icons-material/Bookmark';
 function FavOrgItem({ favOrg }) {
   const history = useHistory();
   const dispatch = useDispatch();
+
   const user = useSelector((store) => store.user);
   const [favorite, setFavorite] = useState(true);
 
@@ -46,7 +47,7 @@ function FavOrgItem({ favOrg }) {
     <Card
       className="org-card"
       style={{ backgroundColor: '#dee8f1' }}
-      sx={{ maxWidth: 500 }}
+      sx={{ width: 300 }}
     >
       <CardMedia
         component="img"
