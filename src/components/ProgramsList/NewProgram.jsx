@@ -64,18 +64,28 @@ function NewProgram() {
   const addDummy = () => {
     setNewProg({ 
       ...newProg, 
-      prog_name: 'Test',
-      prog_location: 'Test',
+      prog_name: 'Jerome Residency: 2022',
+      prog_location: '912 W Lake St, Minneapolis, MN 55408',
+      prog_img_url: 'https://www.columbiamuseum.org/sites/default/files/styles/open_crop/public/2021-09/Art%20Class%20Stock%20%2811%20of%2037%29.jpg?h=56349611&itok=BPbLrQHy',
+      description: 'Each year, three artists are selected to participate in the Jerome Early Career Printmakers Residency at Highpoint. Thanks to the generous support of the Jerome Foundation, this program has existed since 2003 and has served more than 40 early career printmakers. The residency begins in September and ends with a culminating exhibition in May.',
+      start_date: '2022-09-01',
+      end_date: '2023-05-31',
+      deadline: '2022-07-18',
+      app_url: 'https://www.highpointprintmaking.org/access/jerome-residency',
+      funding_amount: '1025',
+      cost_amount: '25',
+      housing: 'Kitchen, Lunchroom',
+      meals: 'Snacks',
+      accessibility: 'Small dogs allowed',
+      public_programs: 'Community Engagement, Discussion, 24 hour Open Studio',
+      discipline: 'Printmaking',
+      facilities: 'Intaglio, Relief, Lithography, Screenprinting',
     })
-
-
-
-
 
   }
 
   return (
-    <>
+    <>          
       <Container sx={{ display: 'flex', justifyContent: 'center' }}>
         <Box
           elevation={10}
@@ -87,11 +97,11 @@ function NewProgram() {
             p: '20px',
           }}
         >
-          <div onClick={addDummy}>Secret</div>
           <FormControl sx={{ width: '100%' }}>
             <Typography variant="h5" textAlign="center" sx={{ mb: '2px' }}>
               Add Program Info
             </Typography>
+            <div onClick={addDummy}>Secret</div>
             <TextField
               sx={{ margin: '10px' }}
               autoComplete="off"

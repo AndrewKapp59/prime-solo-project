@@ -12,6 +12,7 @@ import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import FormControl from '@mui/material/FormControl';
+import Typography from '@mui/material/Typography';
 
 
 function LoginForm() {
@@ -42,10 +43,13 @@ function LoginForm() {
     setValues({ ...values, [prop]: event.target.value });
   };
 
+  const addLogin = () => {
+    setUsername('highpoint@gmail.com')
+    setPassword('1234')
+  } 
+
   const login = (event) => {
     event.preventDefault();
-
-
 
     if (username && password) {
       dispatch({
@@ -136,6 +140,7 @@ function LoginForm() {
         >
           Register
         </Button>
+        <Typography style={{color:'white'}} onClick={addLogin}>Secret</Typography>
     </Box>
   );
 }
