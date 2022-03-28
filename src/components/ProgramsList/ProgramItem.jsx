@@ -28,7 +28,7 @@ function ProgramItem({ program }) {
 
   const handleSelectedOrganization = (program) => {
     console.log(program.org_user_id);
-    history.push(`/organization-details/${program.org_id}`);
+    history.push(`/organization-details/${program.id}`);
   };
 
   const addFavorite = () => {

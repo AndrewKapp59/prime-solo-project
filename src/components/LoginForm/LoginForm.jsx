@@ -45,7 +45,7 @@ function LoginForm() {
 
   const addLogin = () => {
     setUsername('highpoint@gmail.com')
-    setPassword('1234')
+    setPassword('highpoint1234')
   } 
 
   const login = (event) => {

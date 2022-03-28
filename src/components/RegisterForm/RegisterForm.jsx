@@ -26,7 +26,7 @@ function RegisterForm() {
 
   const addLogin = () => {
     setUsername('Liz@gmail.com')
-    setPassword('1234')
+    setPassword('NOT1234')
   } 
 
   const registerUser = (event) => {
