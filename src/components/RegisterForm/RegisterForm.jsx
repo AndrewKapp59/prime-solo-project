@@ -48,7 +48,7 @@ function RegisterForm() {
           htmlFor="username"
           id="username"
           maxRows={5}
-          sx={{ color: 'white', mt: 1, mb: 1, width: 350 }}
+          sx={{ color: 'white', mt: 1, mb: 1, width: 300 }}
           required
           label="Username"
           color="primary"
@@ -71,7 +71,7 @@ function RegisterForm() {
         <TextField
           id="outlined-required"
           maxRows={5}
-          sx={{ color: 'white', mt: 1, mb: 1, width: 350 }}
+          sx={{ color: 'white', mt: 1, mb: 1, width: 300 }}
           required
           label="Password"
           color="primary"
