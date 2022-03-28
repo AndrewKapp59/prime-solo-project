@@ -105,29 +105,6 @@ function LoginForm() {
             label="Password"
           />
         </FormControl>
-      {/* <TextField
-        id="outlined-required"
-        maxRows={5}
-        sx={{ color: 'white', mt: 1, mb: 1, width: 350 }}
-        required
-        label="Password"
-        color="primary"
-        autoComplete="off"
-        value={password}
-        onChange={(event) => setPassword(event.target.value)}
-        endAdornment={
-          <InputAdornment position="end">
-            <IconButton
-              aria-label="toggle password visibility"
-              onClick={handleClickShowPassword}
-              onMouseDown={handleMouseDownPassword}
-              edge="end"
-            >
-              {values.showPassword ? <VisibilityOff /> : <Visibility />}
-            </IconButton>
-          </InputAdornment>
-        }
-      /> */}
       <div>
         <Button variant="outlined" type="submit" name="submit" value="Log In">Login</Button>
       </div>

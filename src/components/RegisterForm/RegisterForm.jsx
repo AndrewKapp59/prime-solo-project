@@ -9,6 +9,12 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import Typography from '@mui/material/Typography';
+import InputLabel from '@mui/material/InputLabel';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 
 function RegisterForm() {
@@ -19,6 +25,22 @@ function RegisterForm() {
   const dispatch = useDispatch();
 
   console.log(value);
+
+  const [values, setValues] = React.useState({
+    password: '',
+    showPassword: false,
+  });
+
+  const handleClickShowPassword = () => {
+    setValues({
+      ...values,
+      showPassword: !values.showPassword,
+    });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
 
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -65,17 +87,28 @@ function RegisterForm() {
         ></TextField>
       </div>
       <div>
-        <TextField
-          id="outlined-required"
-          maxRows={5}
-          sx={{ color: 'white', mt: 1, mb: 1, width: 300 }}
-          required
-          label="Password"
-          color="primary"
-          autoComplete="off"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-        ></TextField>
+      <FormControl sx={{ m: 1, width: 300 }} variant="outlined">
+          <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+          <OutlinedInput
+            id="outlined-adornment-password"
+            type={values.showPassword ? 'text' : 'password'}
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+            label="Password"
+          />
+        </FormControl>
       </div>
       <FormControl>
         <FormLabel id="user-type-radio-buttons-group-label">
