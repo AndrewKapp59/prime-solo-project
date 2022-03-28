@@ -20,7 +20,7 @@ function ProgramDetails() {
     dispatch({ type: 'FETCH_PROG_DETAILS', payload: name });
   }, []);
 
-  const prog = useSelector(store => store.progDetails);
+  const prog = useSelector((store) => store.progDetails);
 
   console.log(prog);
 
@@ -42,28 +42,82 @@ function ProgramDetails() {
           src={prog.prog_img_url}
         />
       </Grid>
-      <Typography gutterBottom variant="b1" component="div">
-        Application Deadline: {new Date(prog.deadline).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}
+      <Typography
+        gutterBottom
+        variant="subtitle1"
+        component="div"
+        textAlign={'center'}
+      >
+        Application Deadline:{' '}
+        {new Date(prog.deadline).toLocaleDateString('en-us', {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+        })}
       </Typography>
-      <Typography gutterBottom variant="b1" component="div">
-        Funding: ${prog.funding_amount}
+      <Typography gutterBottom variant="subtitle2" component="div">
+        Start Date:
       </Typography>
-      <Typography gutterBottom variant="b1" component="div">
-        Costs: ${prog.cost_amount}
+      <Typography gutterBottom variant="body2" component="div">
+        {new Date(prog.start_date).toLocaleDateString('en-us', {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+        })}
       </Typography>
-      <Typography gutterBottom variant="b1" component="div">
+      <Typography gutterBottom variant="subtitle2" component="div">
+        End Date:
+      </Typography>
+      <Typography gutterBottom variant="body2" component="div">
+        {new Date(prog.end_date).toLocaleDateString('en-us', {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+        })}
+      </Typography>
+      <Typography gutterBottom variant="subtitle2" component="div">
         About:
-        <Typography gutterBottom variant="b2" component="div">
-          {prog.description}
-        </Typography>
       </Typography>
-      <Typography gutterBottom variant="b1" component="div">
+      <Typography gutterBottom variant="body2" component="div">
+        {prog.description}
+      </Typography>
+      <Typography gutterBottom variant="subtitle2" component="div">
+        Funding: ${prog.funding_amount}, Costs: ${prog.cost_amount}
+      </Typography>
+      <Typography gutterBottom variant="subtitle2" component="div">
+        Discipline:
+      </Typography>
+      <Typography gutterBottom variant="body2" component="div">
+        {prog.discipline}
+      </Typography>
+      <Typography gutterBottom variant="subtitle2" component="div">
         Facilities:
-        <Typography gutterBottom variant="b2" component="div">
-          {prog.facilities}
-        </Typography>
       </Typography>
-      <Typography gutterBottom variant="b1" component="div">
+      <Typography gutterBottom variant="body2" component="div">
+        {prog.facilities}
+      </Typography>
+      <Typography gutterBottom variant="subtitle2" component="div">
+        Public Programs:
+      </Typography>
+      <Typography gutterBottom variant="body2" component="div">
+        {prog.public_programs}
+      </Typography>
+      <Typography gutterBottom variant="subtitle2" component="div">
+        Housing:
+      </Typography>
+      <Typography gutterBottom variant="body2" component="div">
+        {prog.housing}
+      </Typography>
+      <Typography gutterBottom variant="subtitle2" component="div">
+        Meals:
+      </Typography>
+      <Typography gutterBottom variant="body2" component="div">
+        {prog.meals}
+      </Typography>
+      <Typography gutterBottom variant="subtitle2" component="div">
         Location:
       </Typography>
       <Grid container justifyContent="center">
@@ -76,9 +130,10 @@ function ProgramDetails() {
           allowFullScreen
         ></iframe>
       </Grid>
-      <Box textAlign="center" sx={{mt:1}}>
+      <Box textAlign="center" sx={{ mt: 1 }}>
         <Button size="small" variant="outlined">
-          <Link href={prog.app_url}
+          <Link
+            href={prog.app_url}
             style={{ textDecoration: 'none', color: 'black' }}
           >
             Apply

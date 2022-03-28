@@ -32,11 +32,11 @@ function FavProgItem({ favProg }) {
 
   const removeFavorite = () => {
     console.log('Removing Favorite');
-    dispatch({ type: "DELETE_FAV_PROG", payload: favProg.prog_id });
-    setFavorite(false);
+    dispatch({ type: "DELETE_FAV_PROG", payload: favProg.prog_name });
+    // setFavorite(false);
   };
 
-console.log(favProg.org_id);
+// console.log(favProg.org_id);
 
   const name = favProg.prog_name;
   const img = favProg.prog_img_url;

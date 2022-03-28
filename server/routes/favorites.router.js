@@ -71,12 +71,11 @@ router.post('/prog', (req, res) => {
   let fav = req.body
   console.log(req.body);
   
-  let queryText = `
-    INSERT INTO "fav_prog" ("prog_id", "user_id")
-    VALUES ($1, $2);  
-  `;
-  const values = [fav.prog_id, fav.user_id];
-  pool.query(queryText, values)
+  let query = 
+    `INSERT INTO "fav_prog" ("prog_name", "user_id")
+    VALUES ($1, $2);`;
+
+  pool.query(query, [fav.prog_name, fav.user_id])
     .then((result) => {
       console.log("Fav program posted", result);
       res.sendStatus(201)
@@ -87,14 +86,15 @@ router.post('/prog', (req, res) => {
 });
 
 // delete a favorite program
-router.delete('/prog/:id', (req, res) => {
-  let prog_id = req.params.id;
-  let user_id = req.user.id
-  console.log(user_id);
+router.delete('/prog/:name', (req, res) => {
+  console.log('req.params', req.params);
   
-  let queryText = `DELETE FROM "fav_prog" WHERE "prog_id" = $1 AND "user_id" = $2;`
+  let prog_name = req.params.name
+  let user_id = req.user.id
+  
+  let queryText = `DELETE FROM "fav_prog" WHERE "prog_name" = $1 AND "user_id" = $2;`
 
-  pool.query(queryText, [prog_id, user_id])
+  pool.query(queryText, [prog_name, user_id])
     .then((result) => {
       console.log('Fav prog Delete successful');
 
@@ -116,7 +116,7 @@ router.get('/prog', (req, res) => {
   const query = 
     `SELECT *
     FROM fav_prog
-    JOIN programs ON fav_prog.prog_id = programs.id 
+    JOIN programs ON fav_prog.prog_name = programs.prog_name 
     JOIN organizations ON programs.org_id = organizations.org_user_id
     WHERE user_id = $1
     GROUP BY fav_prog.id, programs.id, organizations.id;`;

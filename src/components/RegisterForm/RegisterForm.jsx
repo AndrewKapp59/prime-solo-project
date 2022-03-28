@@ -8,6 +8,8 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import Typography from '@mui/material/Typography';
+
 
 function RegisterForm() {
   const [username, setUsername] = useState('');
@@ -21,6 +23,11 @@ function RegisterForm() {
   const handleChange = (event) => {
     setValue(event.target.value);
   };
+
+  const addLogin = () => {
+    setUsername('Liz@gmail.com')
+    setPassword('1234')
+  } 
 
   const registerUser = (event) => {
     event.preventDefault();
@@ -48,7 +55,7 @@ function RegisterForm() {
           htmlFor="username"
           id="username"
           maxRows={5}
-          sx={{ color: 'white', mt: 1, mb: 1, width: 350 }}
+          sx={{ color: 'white', mt: 1, mb: 1, width: 300 }}
           required
           label="Username"
           color="primary"
@@ -56,22 +63,12 @@ function RegisterForm() {
           value={username}
           onChange={(event) => setUsername(event.target.value)}
         ></TextField>
-        {/* <label htmlFor="username">
-            Username:
-            <input
-              type="text"
-              name="username"
-              value={username}
-              required
-              onChange={(event) => setUsername(event.target.value)}
-            />
-          </label> */}
       </div>
       <div>
         <TextField
           id="outlined-required"
           maxRows={5}
-          sx={{ color: 'white', mt: 1, mb: 1, width: 350 }}
+          sx={{ color: 'white', mt: 1, mb: 1, width: 300 }}
           required
           label="Password"
           color="primary"
@@ -79,16 +76,6 @@ function RegisterForm() {
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         ></TextField>
-        {/* <label htmlFor="password">
-          Password:
-          <input
-            type="password"
-            name="password"
-            value={password}
-            required
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </label> */}
       </div>
       <FormControl>
         <FormLabel id="user-type-radio-buttons-group-label">
@@ -105,9 +92,8 @@ function RegisterForm() {
       </FormControl>
       <div>
       <Button variant="outlined" type="submit" name="submit" value="Register">Register</Button>
-
-        {/* <input className="btn" type="submit" name="submit" value="Register" /> */}
       </div>
+      <Typography style={{color:'white'}} onClick={addLogin}>Secret</Typography>
     </Box>
   );
 }

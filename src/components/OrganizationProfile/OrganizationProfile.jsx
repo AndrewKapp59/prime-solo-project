@@ -99,31 +99,37 @@ function OrganizationProfile() {
           </Button>
         </div>
       </Grid>
-      <Typography gutterBottom variant="b1" component="div">
+      <Typography gutterBottom variant="subtitle2" component="div">
         About:
-        <Typography gutterBottom variant="b2" component="div">
+      </Typography>
+      <Typography gutterBottom variant="body2" component="div">
           {org.about}
         </Typography>
-      </Typography>
-      <Typography gutterBottom variant="b1" component="div">
+      <Typography gutterBottom variant="subtitle2" component="div">
         Facilities:
-        <Typography gutterBottom variant="b2" component="div">
+      </Typography>
+      <Typography gutterBottom variant="body2" component="div">
           {org.facilities}
         </Typography>
+        <Typography gutterBottom variant="subtitle2" component="div">
+        Discipline:
       </Typography>
-      <Typography gutterBottom variant="b1" component="div">
+      <Typography gutterBottom variant="body2" component="div">
+          {org.discipline}
+        </Typography>
+      <Typography gutterBottom variant="subtitle2" component="div">
         Public Programs:
-        <Typography gutterBottom variant="b2" component="div">
+      </Typography>
+      <Typography gutterBottom variant="body2" component="div">
           {org.public_programs}
         </Typography>
-      </Typography>
-      <Typography gutterBottom variant="b1" component="div">
+      <Typography gutterBottom variant="subtitle2" component="div">
         Housing:
-        <Typography gutterBottom variant="b2" component="div">
+      </Typography>
+      <Typography gutterBottom variant="body2" component="div">
           {org.housing}
         </Typography>
-      </Typography>
-      <Typography gutterBottom variant="b1" component="div">
+      <Typography gutterBottom variant="subtitle2" component="div">
         Location:
       </Typography>
       <Grid container justifyContent="center">

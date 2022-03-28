@@ -12,14 +12,12 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import Link from '@mui/material/Link';
 
-
 function OrganizationDetails() {
   // const org = useSelector((store) => store.selectedOrganization);
   const dispatch = useDispatch();
   const { id } = useParams();
 
   console.log('ID is', id);
-
 
   useEffect(() => {
     // Upon load, get the selected organization details based on the params id
@@ -53,31 +51,31 @@ function OrganizationDetails() {
           src={org.org_img_url}
         />
       </Grid>
-      <Typography gutterBottom variant="b1" component="div">
+      <Typography gutterBottom variant="subtitle2" component="div">
         About:
-        <Typography gutterBottom variant="b2" component="div">
-          {org.about}
-        </Typography>
       </Typography>
-      <Typography gutterBottom variant="b1" component="div">
+      <Typography gutterBottom variant="body2" component="div">
+        {org.about}
+      </Typography>
+      <Typography gutterBottom variant="subtitle2" component="div">
         Facilities:
-        <Typography gutterBottom variant="b2" component="div">
-          {prog.facilities}
-        </Typography>
       </Typography>
-      <Typography gutterBottom variant="b1" component="div">
+      <Typography gutterBottom variant="body2" component="div">
+        {prog.facilities}
+      </Typography>
+      <Typography gutterBottom variant="subtitle2" component="div">
         Public Programs:
-        <Typography gutterBottom variant="b2" component="div">
-          {prog.public_programs}
-        </Typography>
       </Typography>
-      <Typography gutterBottom variant="b1" component="div">
+      <Typography gutterBottom variant="body2" component="div">
+        {prog.public_programs}
+      </Typography>
+      <Typography gutterBottom variant="subtitle2" component="div">
         Housing:
-        <Typography gutterBottom variant="b2" component="div">
-          {prog.housing}
-        </Typography>
       </Typography>
-      <Typography gutterBottom variant="b1" component="div">
+      <Typography gutterBottom variant="body2" component="div">
+        {prog.housing}
+      </Typography>
+      <Typography gutterBottom variant="subtitle2" component="div">
         Location:
       </Typography>
       <Grid container justifyContent="center">
@@ -90,14 +88,14 @@ function OrganizationDetails() {
           allowFullScreen
         ></iframe>
         <BottomNavigation sx={{ width: 'auto' }}>
-          <Link >
-            <BottomNavigationAction icon={<InstagramIcon />} />
+          <Link>
+            <BottomNavigationAction icon={<InstagramIcon />} style={{color:'#bc2a8d'}}/>
           </Link>
           <Link href={org.twitter_url}>
-            <BottomNavigationAction icon={<TwitterIcon />} />
+            <BottomNavigationAction icon={<TwitterIcon />} style={{color:'#1DA1F2'}}/>
           </Link>
           <Link href={org.facebook_url}>
-            <BottomNavigationAction icon={<FacebookIcon />} />
+            <BottomNavigationAction icon={<FacebookIcon />} style={{color:'#4267B2'}}/>
           </Link>
         </BottomNavigation>
       </Grid>
