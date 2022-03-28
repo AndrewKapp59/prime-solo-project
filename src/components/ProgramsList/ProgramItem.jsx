@@ -33,10 +33,8 @@ function ProgramItem({ program }) {
 
   const addFavorite = () => {
     console.log("Adding Favorite");
-    console.log(program)
-    console.log(program.id)
     const postOptions = {
-      prog_id: program.id,
+      prog_name: program.prog_name,
       user_id: user.id
     };
     dispatch({ type: "POST_FAV_PROG", payload: postOptions });
@@ -45,7 +43,7 @@ function ProgramItem({ program }) {
 
   const removeFavorite = () => {
     console.log('Removing Favorite');
-    dispatch({ type: "DELETE_FAV_PROG", payload: program.id });
+    dispatch({ type: "DELETE_FAV_PROG", payload: program.prog_name });
     setFavorite(false);
   };
 
