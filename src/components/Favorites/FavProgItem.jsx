@@ -36,7 +36,7 @@ function FavProgItem({ favProg }) {
     setFavorite(false);
   };
 
-console.log(favProg.org_id);
+// console.log(favProg.org_id);
 
   const name = favProg.prog_name;
   const img = favProg.prog_img_url;

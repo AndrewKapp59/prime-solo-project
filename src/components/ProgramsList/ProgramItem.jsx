@@ -33,6 +33,8 @@ function ProgramItem({ program }) {
 
   const addFavorite = () => {
     console.log("Adding Favorite");
+    console.log(program)
+    console.log(program.id)
     const postOptions = {
       prog_id: program.id,
       user_id: user.id

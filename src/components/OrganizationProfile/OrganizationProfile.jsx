@@ -111,6 +111,12 @@ function OrganizationProfile() {
       <Typography gutterBottom variant="body2" component="div">
           {org.facilities}
         </Typography>
+        <Typography gutterBottom variant="subtitle2" component="div">
+        Discipline:
+      </Typography>
+      <Typography gutterBottom variant="body2" component="div">
+          {org.discipline}
+        </Typography>
       <Typography gutterBottom variant="subtitle2" component="div">
         Public Programs:
       </Typography>

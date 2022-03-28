@@ -71,12 +71,11 @@ router.post('/prog', (req, res) => {
   let fav = req.body
   console.log(req.body);
   
-  let queryText = `
-    INSERT INTO "fav_prog" ("prog_id", "user_id")
-    VALUES ($1, $2);  
-  `;
-  const values = [fav.prog_id, fav.user_id];
-  pool.query(queryText, values)
+  let query = 
+    `INSERT INTO "fav_prog" ("prog_id", "user_id")
+    VALUES ($1, $2);`;
+
+  pool.query(query, [fav.prog_id, fav.user_id])
     .then((result) => {
       console.log("Fav program posted", result);
       res.sendStatus(201)

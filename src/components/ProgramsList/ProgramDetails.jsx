@@ -87,7 +87,12 @@ function ProgramDetails() {
       <Typography gutterBottom variant="subtitle2" component="div">
         Funding: ${prog.funding_amount}, Costs: ${prog.cost_amount}
       </Typography>
-      <Typography gutterBottom variant="subtitle2" component="div"></Typography>
+      <Typography gutterBottom variant="subtitle2" component="div">
+        Discipline:
+      </Typography>
+      <Typography gutterBottom variant="body2" component="div">
+        {prog.discipline}
+      </Typography>
       <Typography gutterBottom variant="subtitle2" component="div">
         Facilities:
       </Typography>
