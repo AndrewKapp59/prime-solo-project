@@ -33,7 +33,7 @@ function Nav() {
               Organizations
             </Link>
           </Button>
-          <Button size="small" variant="text">
+          <Button size="small" variant="text" >
             <Link
               className="navLink"
               to="/login"

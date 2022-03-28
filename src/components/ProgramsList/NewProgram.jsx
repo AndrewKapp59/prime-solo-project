@@ -101,7 +101,7 @@ function NewProgram() {
             <Typography variant="h5" textAlign="center" sx={{ mb: '2px' }}>
               Add Program Info
             </Typography>
-            <div onClick={addDummy}>Secret</div>
+            <Typography style={{color:'white'}} onClick={addDummy}>Secret</Typography>
             <TextField
               sx={{ margin: '10px' }}
               autoComplete="off"

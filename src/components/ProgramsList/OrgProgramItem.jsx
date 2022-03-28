@@ -406,13 +406,13 @@ function OrgProgramItem({ program }) {
         </Typography>
         <Typography
           gutterBottom
-          variant="h7"
+          variant="subtitle1"
           component="div"
           onClick={() => handleSelectedOrganization(program)}
         >
           {organization}
         </Typography>
-        <Typography gutterBottom variant="h7" component="div">
+        <Typography gutterBottom variant="subtitle1" component="div">
           App Deadline:{' '}
           {new Date(deadline).toLocaleDateString('en-us', {
             weekday: 'long',
